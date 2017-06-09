@@ -8,7 +8,7 @@ public class Jeu {
 	private int tHorizontale;
 	private int tVerticale;
 	private Plateau plateau;
-	private int nbAligne;
+	private int nbAligneMax;
 	
 	public Jeu(Plateau p, int tHo, int tVe)
 	{
@@ -19,13 +19,13 @@ public class Jeu {
 		switch (Options.Valeurs.getPuissanceMode())
 		{
 			case PUISSANCE4:
-				nbAligne = 4;
+				nbAligneMax = 4;
 				break;
 			case PUISSANCE5:
-				nbAligne = 5;
+				nbAligneMax = 5;
 				break;
 			case PUISSANCE6:
-				nbAligne = 6;
+				nbAligneMax = 6;
 				break;
 		}
 		
@@ -70,7 +70,7 @@ public class Jeu {
 					
 					// On attend 50 millisecondes
 					try {
-						Thread.sleep(50);
+						Thread.sleep(20);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -85,11 +85,36 @@ public class Jeu {
 				grille[col][ligneChoisie] = joueur.getCouleur();
 				plateau.getPGrille().actualise(grille);
 				
+				
+				
 				return true;
 			}
 		}
 		
 		return false;
+	}
+	
+	// Joue un coup sans animation et sans actualiser l'interface
+	public boolean jouerCoupTmp(int col, Joueur joueur)
+	{
+		for(int i = tVerticale - 1; i >= 0; i--)
+			if (grille[col][i] == Case.VIDE)
+			{
+				grille[col][i] = joueur.getCouleur();
+				return true;
+			}
+		return false;
+	}
+	
+	// Annule le coup sans actualiser l'interface
+	public void annulerCoup(int col)
+	{
+		for(int i = 0; i < tVerticale; i++)
+			if (grille[col][i] != Case.VIDE)
+			{
+				grille[col][i] = Case.VIDE;
+				break;
+			}
 	}
 	
 	public boolean grillePleine()
@@ -106,7 +131,7 @@ public class Jeu {
 				if (grille[i][j] == joueur.getCouleur()){
 					// Boucle pour toutes les directions (Nord, NordEst, Sud etc ...)
 					for (int k = 0; k < 8; k++)
-						if (verifierDirection(joueur, i, j, k))
+						if (verifierDirection(joueur, i, j, k, nbAligneMax))
 							return true;
 				}
 		return false;
@@ -125,7 +150,7 @@ public class Jeu {
 	}
 	
 	// Permet de vérifier s'il a y 3 jetons alignés dans une direction
-	private boolean verifierDirection(Joueur j, int x, int y, int direction)
+	private boolean verifierDirection(Joueur j, int x, int y, int direction, int nbAligne)
 	{
 		for (int i = 1; i < nbAligne; i++)
 		{
@@ -172,7 +197,19 @@ public class Jeu {
 		return true;
 	}
 	
-	private boolean estDansLaGrille(int x, int y)
+	public int nombreAlignement(int nbAligne, Joueur joueur)
+	{
+		int count = 0;
+		for (int i = 0; i < tHorizontale; i++)
+			for (int j = 0; j < tVerticale; j++)
+				if (grille[i][j] == joueur.getCouleur())
+					for (int k = 0; k < 8; k++)
+						if (verifierDirection(joueur, i, j, k, nbAligne))
+							count++;
+		return count;
+	}
+	
+	public boolean estDansLaGrille(int x, int y)
 	{
 		// On enlève 1 à la taille Horizontale et Verticale car le tableau commence à 0 et non pas 1
 		int tH = tHorizontale - 1;
@@ -203,6 +240,11 @@ public class Jeu {
 	public int getTVerticale()
 	{
 		return tVerticale;
+	}
+	
+	public int getNbAligneMax()
+	{
+		return nbAligneMax;
 	}
 }
 

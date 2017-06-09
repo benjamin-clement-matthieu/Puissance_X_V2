@@ -1,4 +1,5 @@
 package Moteur;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 import Interface.Plateau;
@@ -11,6 +12,9 @@ public class Partie {
 	private int jCourrant;
 	private boolean disposed;
 	private boolean partieFinie;
+	
+	private int nbWinJ1 = 0;
+	private int nbPartie = 0;
 	
 	public Partie(Joueur j1, Joueur j2, Plateau plateau)
 	{
@@ -29,30 +33,58 @@ public class Partie {
 	{
 		partieFinie = false;
 		jCourrant = new Random().nextInt(2);
-		
+		nbPartie++;
 		while(!disposed)
 		{
+			if (joueurs[jCourrant] instanceof Humain)
+				 plateau.getPGrille().enableButtons(true);
+			else
+				plateau.getPGrille().enableButtons(false);
+			
 			plateau.setCouleurJC(joueurs[jCourrant].getCouleur());
+			joueurs[jCourrant].jouer(plateau.getJeu());
+			
+			if (plateau.getJeu().verifierGagnant(joueurs[jCourrant]))
+			{
+				if (joueurs[jCourrant] == joueur1)
+				{
+					nbWinJ1++;
+				}
+				//System.out.println("Le joueur " + joueurs[jCourrant].getNom() + " : " + joueurs[jCourrant].getCouleur() + " a gagné");
+				break;
+			}
+			
+			
 			if (plateau.getJeu().grillePleine())
 			{
 				System.out.println("La grille est pleine !");
 				break;
 			}
-			
-			joueurs[jCourrant].jouer(plateau.getJeu());
-			
-			if (plateau.getJeu().verifierGagnant(joueurs[jCourrant]))
-			{
-				System.out.println("Le joueur " + joueurs[jCourrant].getNom() + " : " + joueurs[jCourrant].getCouleur() + " a gagné");
-				break;
-			}
-			
 			jCourrant++;
 			jCourrant = jCourrant%2;
 		}
 		
+		plateau.partieFinie();
 		partieFinie = true;
+		
+		/*if (nbPartie < 1000)
+			plateau.recommencer();
+		else
+		{
+			System.out.println(pourcentage(nbWinJ1, nbPartie));
+		} */
 	}
+	
+	private String pourcentage(int a,int b){
+        double c = new Double(b);
+ 
+        double resultat = a/c;
+        double resultatFinal = resultat*100;
+ 
+ 
+        DecimalFormat df = new DecimalFormat("###.##");
+        return df.format(resultatFinal) + " %";
+    }
 	
 	public void dispose()
 	{
@@ -82,6 +114,11 @@ public class Partie {
 	public Joueur getJoueur2()
 	{
 		return joueur2;
+	}
+	
+	public Joueur getJoueurSuivant(Joueur joueur)
+	{
+		return (joueur == joueur1) ? joueur2 : joueur1;
 	}
 	
 	// Retourne null si il n'y a pas de partie en cours
