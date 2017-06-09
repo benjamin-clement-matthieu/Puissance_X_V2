@@ -2,21 +2,20 @@ package Interface;
 
 import javax.swing.JFrame;
 
-import IA.IARandom;
-import Moteur.Case;
-import Moteur.Humain;
 import Moteur.Joueur;
 import Moteur.PuissanceMode;
+import Score.GestionnaireScore;
 
 public class Application {
 	private final JFrame frame = new JFrame("Puissance X");
-	
+	private GestionnaireScore gs;
 	public Application()
 	{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.setSize(900, 700);
+		frame.setSize(700, 700);
 	    frame.setLocationByPlatform(true);
 	    frame.setLocationRelativeTo(null);
+	    gs = new GestionnaireScore("Scores.txt");
 	    
 	    montrerMenu();
 	}
@@ -28,9 +27,14 @@ public class Application {
 	    frame.setVisible(true);
 	}
 	
-	public void montrerPseudo()
+	public String montrerPseudo(int numJoueur)
 	{
-		
+		PPseudo pseudo = new PPseudo(this, numJoueur);
+		frame.setSize(700, 700);
+	    frame.setContentPane(pseudo);
+	    frame.setVisible(true);
+	    
+	    return pseudo.getSelectedNom();
 	}
 	
 	public void montrerScores()
@@ -42,7 +46,6 @@ public class Application {
 	
 	public void montrerOptions()
 	{
-		frame.setSize(700, 700);
 	    frame.setContentPane(new POptions(this));
 	    frame.setVisible(true);
 	}
@@ -52,6 +55,11 @@ public class Application {
 		frame.setSize(900, 700);
 		frame.setContentPane(new Plateau(j1, j2, this));
 		frame.setVisible(true);
+	}
+	
+	public GestionnaireScore getGestionnaireScore()
+	{
+		return gs;
 	}
 	
 	public static void main(String[] args) {

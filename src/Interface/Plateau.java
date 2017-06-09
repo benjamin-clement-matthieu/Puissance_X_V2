@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Moteur.Case;
+import Moteur.Humain;
 import Moteur.Jeu;
 import Moteur.Joueur;
 import Moteur.Partie;
@@ -19,20 +20,34 @@ public class Plateau extends JPanel{
 	private int nbC = -1; // Nombre de colonnes
 	private int nbL = -1; // Nombre de lignes
 	private Thread partieThread = null;
+	private final Application app;
 	private Rond couleurJC; // Couleur du joueur courrant
+	private JLabel jCourrant;
+	private JLabel jGagnant;
+	private JLabel lJoueur1;
+	private JLabel lJoueur2;
 	
 	public Plateau(Joueur j1, Joueur j2, final Application appli)
 	{
+		app = appli;
 		initPlateau(j1, j2);
-		initComposant(appli);
+		initComposant();
 	}
 	
-	private void initComposant(final Application appli)
+	private void initComposant()
 	{
+		String nomJ1 = partie.getJoueur1().getNom();
+		String nomJ2 = partie.getJoueur2().getNom();
 		// Label pour les noms des joueurs
-		JLabel lJoueur1 = new JLabel("Joueur 1 : " + partie.getJoueur1().getNom());
-		JLabel lJoueur2 = new JLabel("Joueur 2 : " + partie.getJoueur2().getNom());
-		JLabel jCourrant = new JLabel("Joueur en cours :");
+		lJoueur1 = new JLabel("Joueur 1 : " + nomJ1);
+		lJoueur2 = new JLabel("Joueur 2 : " + nomJ2);
+		
+		if (partie.getJoueur1() instanceof Humain)
+			lJoueur1.setText("Joueur 1 : " + nomJ1 + "  " + app.getGestionnaireScore().getJoueurScore(nomJ1));
+		
+		if (partie.getJoueur2() instanceof Humain)
+			lJoueur2.setText("Joueur 2 : " + nomJ2 + "  " + app.getGestionnaireScore().getJoueurScore(nomJ2));
+		
 		
 		Rond couleurJ1 = new Rond(40);
 		couleurJ1.setColor(partie.getJoueur1().getCouleur());
@@ -41,6 +56,15 @@ public class Plateau extends JPanel{
 		couleurJ2.setColor(partie.getJoueur2().getCouleur());
 		
 		couleurJC = new Rond(40);
+		couleurJC.setBounds(750, 250, 200, 50);
+				
+		// Label du joueur courrant
+		jCourrant = new JLabel("Joueur en cours :");
+		jCourrant.setBounds(600, 250, 150, 50);
+		
+		// Label du gagnant
+		jGagnant = new JLabel();
+		jGagnant.setBounds(600, 350, 300, 50);
 		
 		JButton bMenu = new JButton("Menu");
 		bMenu.setPreferredSize(new Dimension(80, 50));
@@ -50,7 +74,7 @@ public class Plateau extends JPanel{
 				// On force la fin de la partie en cours
 				partie.dispose();
 				
-				appli.montrerMenu();
+				app.montrerMenu();
 			}
 		});
 		
@@ -71,7 +95,7 @@ public class Plateau extends JPanel{
 					// On force la fin de la partie en cours
 					partie.dispose();
 					
-					restart();
+					recommencer();
 				}
 				
 			}
@@ -105,14 +129,6 @@ public class Plateau extends JPanel{
 		// Bouton recommencer
 		bRecommencer.setBounds(650, 170, 200, 50);
 		this.add(bRecommencer);
-		
-		// Joueur courrant
-		jCourrant.setBounds(600, 250, 150, 50);
-		this.add(jCourrant);
-		
-		// Couleur joueur courrant
-		couleurJC.setBounds(750, 250, 200, 50);
-		this.add(couleurJC);
 	}
 	
 	private void initPlateau(Joueur j1, Joueur j2)
@@ -146,7 +162,7 @@ public class Plateau extends JPanel{
 		couleurJC.setColor(couleur);
 	}
 	
-	private void restart()
+	public void recommencer()
 	{
 		jeu = new Jeu(this, nbC, nbL);
 		pGrille.actualise(jeu.getGrille());
@@ -171,7 +187,15 @@ public class Plateau extends JPanel{
 	
 	public void commencerPartie()
 	{
-		pGrille.enableButtons(true);
+		this.add(jCourrant);
+		this.add(couleurJC);
+		this.remove(jGagnant);
+		this.repaint();
+		
+		// S'il y a au moins un humain, on active les boutons
+		if (partie.getJoueur1() instanceof Humain || partie.getJoueur2() instanceof Humain)
+			pGrille.enableButtons(true);
+		
 		partieThread = new Thread() {
 			public void run()
 			{
@@ -180,6 +204,33 @@ public class Plateau extends JPanel{
 		};
 		
 		partieThread.start();
+		
+	}
+	
+	public void partieFinie()
+	{
+		String nomJ1 = partie.getJoueur1().getNom();
+		String nomJ2 = partie.getJoueur2().getNom();
+		
+		if (jeu.grillePleine())
+			jGagnant.setText("La grille est pleine ! Aucun gagnant.");
+		else
+		{
+			jGagnant.setText("Le joueur " + partie.getJoueurCourrant().getNom() + " (" + partie.getJoueurCourrant().getCouleur() + ") a gagné !");
+			if (partie.getJoueur1() instanceof Humain)
+				lJoueur1.setText("Joueur 1 : " + nomJ1 + "  " + app.getGestionnaireScore().getJoueurScore(nomJ1));
+			
+			if (partie.getJoueur2() instanceof Humain)
+				lJoueur2.setText("Joueur 2 : " + nomJ2 + "  " + app.getGestionnaireScore().getJoueurScore(nomJ2));
+		}
+			
+		
+		this.remove(jCourrant);
+		this.remove(couleurJC);
+		this.add(jGagnant);
+		pGrille.enableButtons(false);
+		
+		this.repaint();
 	}
 }
 

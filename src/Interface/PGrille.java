@@ -1,5 +1,6 @@
 package Interface;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -31,6 +32,7 @@ public class PGrille extends JPanel {
 		try {
 			Image img = ImageIO.read(new File("fond-bleu.jpg"));
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
