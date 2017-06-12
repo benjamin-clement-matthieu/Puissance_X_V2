@@ -39,7 +39,7 @@ public class IAMinMax extends Ordinateur {
 		int max = MINVAL;
 		ArrayList<Integer> coupsPossibles = jeu.getCoupsPossible();
 		ArrayList<Integer> coupsChoisies = new ArrayList<Integer>();
-		System.out.println("-------- " + getCouleur() + " --------");
+		//System.out.println("-------- " + getCouleur() + " --------");
 		for(int col : coupsPossibles)
 		{
 			jeu.jouerCoupTmp(col, this);
@@ -47,7 +47,7 @@ public class IAMinMax extends Ordinateur {
 			
 			if (tmpMax > max)
 			{
-				System.out.println(tmpMax + ">" + max + " on choisit la colonne " + col);
+				//System.out.println(tmpMax + ">" + max + " on choisit la colonne " + col);
 				max = tmpMax;
 				// On reset la liste des choix car celui ci est le meilleur
 				coupsChoisies.clear();
@@ -55,7 +55,7 @@ public class IAMinMax extends Ordinateur {
 			}
 			else if (tmpMax == max)
 			{
-				System.out.println(tmpMax + "=" + max + " on ajoute " + col + " à la liste des possibilités");
+				//System.out.println(tmpMax + "=" + max + " on ajoute " + col + " à la liste des possibilités");
 				coupsChoisies.add(col);
 			}
 			
@@ -65,7 +65,7 @@ public class IAMinMax extends Ordinateur {
 		// On mélange la liste des choix pour que l'IA ne joue pas toujours la même chose
 		Collections.shuffle(coupsChoisies);
 		//System.out.println(getCouleur() + " : " + coupsChoisies.get(0));
-		System.out.println("Coup jou� : " + coupsChoisies.get(0));
+		//System.out.println("Coup jou� : " + coupsChoisies.get(0));
 		jeu.jouerCoup(coupsChoisies.get(0), this);
 	}
 	

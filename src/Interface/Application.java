@@ -7,7 +7,7 @@ import Moteur.PuissanceMode;
 import Score.GestionnaireScore;
 /**
  * Class Application qui est la class principale de gestion de l'application Puissance X
- * Elle permet d'afficher les différents panels.
+ * Elle permet d'afficher les diffï¿½rents panels.
  */
 public class Application {
 	private final JFrame frame = new JFrame("Puissance X");
@@ -19,6 +19,9 @@ public class Application {
 	    frame.setLocationByPlatform(true);
 	    frame.setLocationRelativeTo(null);
 	    gs = new GestionnaireScore("Scores.txt");
+	    
+	    SoundEffect.init();
+	    SoundEffect.volume = SoundEffect.Volume.HIGH;
 	    
 	    montrerMenu();
 	}

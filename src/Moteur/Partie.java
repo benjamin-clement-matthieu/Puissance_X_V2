@@ -4,7 +4,7 @@ import java.util.Random;
 
 import Interface.Plateau;
 /**
- * Class Partie qui permet de gérer une partie de Puissance X
+ * Class Partie qui permet de gï¿½rer une partie de Puissance X
  *
  */
 public class Partie {
@@ -67,15 +67,15 @@ public class Partie {
 			jCourrant = jCourrant%2;
 		}
 		
-		plateau.partieFinie();
-		partieFinie = true;
+		//plateau.partieFinie();
+		//partieFinie = true;
 		
-		/*if (nbPartie < 100)
+		if (nbPartie < 50)
 			plateau.recommencer();
 		else
 		{
 			System.out.println(pourcentage(nbWinJ1, nbPartie));
-		}*/
+		}
 	}
 	
 	private String pourcentage(int a,int b){
@@ -90,7 +90,7 @@ public class Partie {
     }
 	
 	/**
-	 * Permet d'arrêter une partie en cours
+	 * Permet d'arrï¿½ter une partie en cours
 	 */
 	public void dispose()
 	{
@@ -123,9 +123,9 @@ public class Partie {
 	}
 	
 	/**
-	 * Permet d'avoir l'autre joueur que celui passé en paramètre
+	 * Permet d'avoir l'autre joueur que celui passï¿½ en paramï¿½tre
 	 * @param joueur
-	 * @return L'autre joueur que celui passé en paramètre
+	 * @return L'autre joueur que celui passï¿½ en paramï¿½tre
 	 */
 	public Joueur getJoueurSuivant(Joueur joueur)
 	{

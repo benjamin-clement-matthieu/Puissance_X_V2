@@ -13,7 +13,7 @@ import Moteur.Case;
 import Moteur.Humain;
 import Score.JoueurScore;
 /**
- * Class Menu qui permet de gérer le menu principale
+ * Class Menu qui permet de gï¿½rer le menu principale
  *
  */
 public class PMenu extends JPanel implements ActionListener{

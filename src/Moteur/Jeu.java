@@ -160,7 +160,11 @@ public class Jeu {
 	public boolean verifierGagnant(Joueur joueur)
 	{
 		for (int i = 0; i < tHorizontale; i++)
-			for (int j = 0; j < tVerticale; j++)
+		{
+			if (grille[i][tVerticale - 1] == Case.VIDE)
+				continue;
+		
+			for (int j = 0; j < tVerticale; j++){
 				//Si on a trouvé un jeton du joueur, on regarde dans toutes les directions
 				if (grille[i][j] == joueur.getCouleur()){
 					// Boucle pour toutes les directions (Nord, NordEst, Sud etc ...)
@@ -168,6 +172,9 @@ public class Jeu {
 						if (verifierDirection(joueur, i, j, k, nbAligneMax))
 							return true;
 				}
+			}
+		}
+		
 		return false;
 	}
 	

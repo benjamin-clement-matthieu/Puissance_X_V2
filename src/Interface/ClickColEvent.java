@@ -17,9 +17,6 @@ public class ClickColEvent implements ActionListener {
 		JButton b = (JButton) arg0.getSource();
 		selectedCol = Integer.valueOf(b.getName());
 		clicked = true;
-		SoundEffect.init();
-	    SoundEffect.volume = SoundEffect.Volume.MUTE;
-		SoundEffect.SON_PIECE.play();
 	}
 	
 	/**
