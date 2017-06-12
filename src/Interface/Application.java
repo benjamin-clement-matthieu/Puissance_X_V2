@@ -21,7 +21,6 @@ public class Application {
 	    gs = new GestionnaireScore("Scores.txt");
 	    
 	    SoundEffect.init();
-	    SoundEffect.volume = SoundEffect.Volume.HIGH;
 	    
 	    montrerMenu();
 	}
