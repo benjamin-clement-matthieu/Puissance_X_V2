@@ -97,10 +97,6 @@ public class Jeu {
 				// On change la couleur de la case finale
 				grille[col][ligneChoisie] = joueur.getCouleur();
 				plateau.getPGrille().actualise(grille);
-				SoundEffect.init();
-			    SoundEffect.volume = SoundEffect.Volume.HIGH;
-				SoundEffect.SON_PIECE.play();
-				
 				
 				return true;
 			}

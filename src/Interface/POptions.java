@@ -60,6 +60,8 @@ public class POptions extends JPanel implements ActionListener {
 				break;
 		}
 		
+		check1.setSelected(Options.Valeurs.getSonActive());
+		
 		back.addActionListener(this);
 		jr1.addActionListener(this);
 		jr2.addActionListener(this);
@@ -134,7 +136,7 @@ public class POptions extends JPanel implements ActionListener {
 		}
 		else if (e.getSource() == check1)
 		{
-			
+			Options.Valeurs.setSonActive(check1.isSelected());
 		}
 	}
 

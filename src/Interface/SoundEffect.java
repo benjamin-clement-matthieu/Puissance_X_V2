@@ -10,12 +10,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 public enum SoundEffect {
    SON_PIECE("0340.wav");
-	
-   public static enum Volume {
-      MUTE, LOW, MEDIUM, HIGH
-   }
-   
-   public static Volume volume = Volume.LOW;
+
    private Clip clip;
    SoundEffect(String soundFileName) {
       try {
@@ -33,7 +28,7 @@ public enum SoundEffect {
    }
    
    public void play() {
-      if (volume != Volume.MUTE) {
+      if (Options.Valeurs.getSonActive()) {
          if (clip.isRunning())
             clip.stop();
          clip.setFramePosition(0);
