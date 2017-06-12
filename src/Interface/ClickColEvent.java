@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 /**
- * Class ClickColEvent permettant de gérer les boutons de la grille
+ * Class ClickColEvent permettant de gï¿½rer les boutons de la grille
  *
  */
 public class ClickColEvent implements ActionListener {
@@ -18,10 +18,13 @@ public class ClickColEvent implements ActionListener {
 		JButton b = (JButton) arg0.getSource();
 		selectedCol = Integer.valueOf(b.getName());
 		clicked = true;
+		SoundEffect.init();
+	    SoundEffect.volume = SoundEffect.Volume.HIGH;
+		SoundEffect.DOWN.play();
 	}
 	
 	/**
-	 * Permet de savoir si un bouton a été cliqué
+	 * Permet de savoir si un bouton a ï¿½tï¿½ cliquï¿½
 	 * @return
 	 */
 	public boolean clicked()
@@ -30,8 +33,8 @@ public class ClickColEvent implements ActionListener {
 	}
 	
 	/**
-	 * Permet de récupérer la colonne sélectionnée.
-	 * @return La colonne sélectionnée
+	 * Permet de rï¿½cupï¿½rer la colonne sï¿½lectionnï¿½e.
+	 * @return La colonne sï¿½lectionnï¿½e
 	 */
 	public int getSelectedCol()
 	{
