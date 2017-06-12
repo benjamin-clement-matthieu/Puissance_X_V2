@@ -2,6 +2,7 @@ package Moteur;
 import java.util.ArrayList;
 
 import Interface.Plateau;
+import Interface.SoundEffect;
 /**
  * Class Jeu contenant plusieurs fonctions de gestion de la grille principale du Puissance X
  *
@@ -48,7 +49,7 @@ public class Jeu {
 	 * Joue un coup
 	 * @param col Colonne du coup
 	 * @param joueur Joueur qui joue le coup
-	 * @return True si le coup a pu être joué, sinon False
+	 * @return True si le coup a pu ï¿½tre jouï¿½, sinon False
 	 */
 	public boolean jouerCoup(int col, Joueur joueur)
 	{
@@ -96,7 +97,9 @@ public class Jeu {
 				// On change la couleur de la case finale
 				grille[col][ligneChoisie] = joueur.getCouleur();
 				plateau.getPGrille().actualise(grille);
-				
+				SoundEffect.init();
+			    SoundEffect.volume = SoundEffect.Volume.HIGH;
+				SoundEffect.SON_PIECE.play();
 				
 				
 				return true;
@@ -109,7 +112,7 @@ public class Jeu {
 	 * Joue un coup sans animation et sans actualiser l'interface, elle permet de tester un coup.
 	 * @param col Colonne du coup
 	 * @param joueur Joueur qui joue le coup
-	 * @return True si le coup a pu être joué, sinon False
+	 * @return True si le coup a pu ï¿½tre jouï¿½, sinon False
 	 */
 	
 	public boolean jouerCoupTmp(int col, Joueur joueur)
@@ -130,7 +133,7 @@ public class Jeu {
 	
 	public void annulerCoup(int col)
 	{
-		// Trouve enleve la première case non vide de la colonne
+		// Trouve enleve la premiï¿½re case non vide de la colonne
 		for(int i = 0; i < tVerticale; i++)
 			if (grille[col][i] != Case.VIDE)
 			{
@@ -150,9 +153,9 @@ public class Jeu {
 	}
 	
 	/**
-	 * Vérifie si le joueur a gagné.
-	 * @param joueur Le joueur qui doit être vérifié
-	 * @return True si le joueur a gagné, sinon False
+	 * Vï¿½rifie si le joueur a gagnï¿½.
+	 * @param joueur Le joueur qui doit ï¿½tre vï¿½rifiï¿½
+	 * @return True si le joueur a gagnï¿½, sinon False
 	 */
 	public boolean verifierGagnant(Joueur joueur)
 	{
@@ -185,14 +188,14 @@ public class Jeu {
 	}
 	
 	/**
-	 * Permet de vérifier s'il y a nbAligne jetons alignés dans une direction à partir d'un point x,y
-	 * et s'il est possible d'avoir nbAligneMax jetons alignés dans cette même direction
-	 * @param j Le joueur a vérifier
-	 * @param x Numéro de la colonne
-	 * @param y Numéro de la ligne
+	 * Permet de vï¿½rifier s'il y a nbAligne jetons alignï¿½s dans une direction ï¿½ partir d'un point x,y
+	 * et s'il est possible d'avoir nbAligneMax jetons alignï¿½s dans cette mï¿½me direction
+	 * @param j Le joueur a vï¿½rifier
+	 * @param x Numï¿½ro de la colonne
+	 * @param y Numï¿½ro de la ligne
 	 * @param direction Compris entre 0 et 7 pour indiquer la direction (ex: 0 correspont au Nord)
-	 * @param nbAligne Nombre de jeton alignés a tester
-	 * @return True si il y a nbAligne de jeton alignés et s'il est possible d'en aligner 
+	 * @param nbAligne Nombre de jeton alignï¿½s a tester
+	 * @return True si il y a nbAligne de jeton alignï¿½s et s'il est possible d'en aligner 
 	 * le nombre maximale pour gagner, sinon False
 	 */
 	private boolean verifierDirection(Joueur j, int x, int y, int direction, int nbAligne)
@@ -239,7 +242,7 @@ public class Jeu {
 				return false;
 			
 			// Si la case n'est pas celle du joueur
-			// et si on test toujours s'il y a nbAligne de jetons aligné
+			// et si on test toujours s'il y a nbAligne de jetons alignï¿½
 			if (grille[x2][y2] != j.getCouleur() && i < nbAligne)
 				return false;
 			
@@ -254,9 +257,9 @@ public class Jeu {
 	}
 	
 	/**
-	 * Permet de compter les alignements de nbAligne jetons pour un joueur donné
+	 * Permet de compter les alignements de nbAligne jetons pour un joueur donnï¿½
 	 * et s'il est possible d'en aller nbAligneMax.
-	 * @param nbAligne Nombre de jetons alignés à compter
+	 * @param nbAligne Nombre de jetons alignï¿½s ï¿½ compter
 	 * @param joueur Le joueur a tester
 	 * @return Le nombre d'alignement.
 	 */
@@ -274,8 +277,8 @@ public class Jeu {
 	
 	/**
 	 * Permet de savoir si le point x, y est dans la grille
-	 * @param x Numéro de la colonne
-	 * @param y Numéro de la ligne
+	 * @param x Numï¿½ro de la colonne
+	 * @param y Numï¿½ro de la ligne
 	 * @return	True si le point est dans la grille, sinon False
 	 */
 	public boolean estDansLaGrille(int x, int y)

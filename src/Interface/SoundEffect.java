@@ -9,7 +9,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 public enum SoundEffect {
-   DOWN("0340.wav");
+   SON_PIECE("0340.wav");
    public static enum Volume {
       MUTE, LOW, MEDIUM, HIGH
    }

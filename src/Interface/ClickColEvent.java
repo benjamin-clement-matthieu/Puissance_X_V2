@@ -1,6 +1,5 @@
 package Interface;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,8 +18,8 @@ public class ClickColEvent implements ActionListener {
 		selectedCol = Integer.valueOf(b.getName());
 		clicked = true;
 		SoundEffect.init();
-	    SoundEffect.volume = SoundEffect.Volume.HIGH;
-		SoundEffect.DOWN.play();
+	    SoundEffect.volume = SoundEffect.Volume.MUTE;
+		SoundEffect.SON_PIECE.play();
 	}
 	
 	/**
