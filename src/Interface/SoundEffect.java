@@ -9,7 +9,8 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 public enum SoundEffect {
-   SON_PIECE("0340.wav");
+   SON_PIECE("0340.wav"),
+   VICTOIRE("111.wav");
 
    private Clip clip;
    SoundEffect(String soundFileName) {
