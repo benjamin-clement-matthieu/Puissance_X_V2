@@ -70,15 +70,8 @@ public class Partie {
 			jCourrant = jCourrant%2;
 		}
 		
-		//plateau.partieFinie();
-		//partieFinie = true;
-		
-		if (nbPartie < 50)
-			plateau.recommencer();
-		else
-		{
-			System.out.println(pourcentage(nbWinJ1, nbPartie));
-		}
+		plateau.partieFinie();
+		partieFinie = true;
 	}
 	
 	private String pourcentage(int a,int b){
