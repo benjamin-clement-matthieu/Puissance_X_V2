@@ -39,7 +39,7 @@ public class IAMinMax extends Ordinateur {
 		int max = MINVAL;
 		ArrayList<Integer> coupsPossibles = jeu.getCoupsPossible();
 		ArrayList<Integer> coupsChoisies = new ArrayList<Integer>();
-		
+		System.out.println("-------- " + getCouleur() + " --------");
 		for(int col : coupsPossibles)
 		{
 			jeu.jouerCoupTmp(col, this);
@@ -47,7 +47,7 @@ public class IAMinMax extends Ordinateur {
 			
 			if (tmpMax > max)
 			{
-				//System.out.println(tmpMax + ">" + max + " on choisit la colonne " + col);
+				System.out.println(tmpMax + ">" + max + " on choisit la colonne " + col);
 				max = tmpMax;
 				// On reset la liste des choix car celui ci est le meilleur
 				coupsChoisies.clear();
@@ -55,7 +55,7 @@ public class IAMinMax extends Ordinateur {
 			}
 			else if (tmpMax == max)
 			{
-				//System.out.println(tmpMax + "=" + max + " on ajoute " + col + " à la liste des possibilités");
+				System.out.println(tmpMax + "=" + max + " on ajoute " + col + " à la liste des possibilités");
 				coupsChoisies.add(col);
 			}
 			
@@ -64,17 +64,23 @@ public class IAMinMax extends Ordinateur {
 		
 		// On mélange la liste des choix pour que l'IA ne joue pas toujours la même chose
 		Collections.shuffle(coupsChoisies);
-		System.out.println(getCouleur() + " : " + coupsChoisies.get(0));
+		//System.out.println(getCouleur() + " : " + coupsChoisies.get(0));
+		System.out.println("Coup jou� : " + coupsChoisies.get(0));
 		jeu.jouerCoup(coupsChoisies.get(0), this);
 	}
 	
 	private int min(Jeu jeu, int prof)
 	{
-		if(prof != 0 && !jeu.verifierGagnant(this) && !jeu.verifierGagnant(autreJoueur))
+		if (jeu.verifierGagnant(this))
+			return eval(jeu, MAXVAL);
+		
+		if (jeu.verifierGagnant(autreJoueur))
+			return eval(jeu, MINVAL);
+		
+		ArrayList<Integer> coupsPossibles = jeu.getCoupsPossible();
+		if(prof!= 0 && coupsPossibles.size() > 0)
 		{
 			int valeur = MAXVAL;
-			
-			ArrayList<Integer> coupsPossibles = jeu.getCoupsPossible();
 			for(int col : coupsPossibles)
 			{
 				jeu.jouerCoupTmp(col, autreJoueur);
@@ -87,17 +93,22 @@ public class IAMinMax extends Ordinateur {
 		}
 		else
 		{
-			return eval(jeu);
+			return eval(jeu, 0);
 		}
 	}
 	
 	private int max(Jeu jeu, int prof)
 	{
-		if(prof!= 0 && !jeu.verifierGagnant(this) && !jeu.verifierGagnant(autreJoueur))
+		if (jeu.verifierGagnant(this))
+			return eval(jeu, MAXVAL);
+		
+		if (jeu.verifierGagnant(autreJoueur))
+			return eval(jeu, MINVAL);
+		
+		ArrayList<Integer> coupsPossibles = jeu.getCoupsPossible();
+		if(prof!= 0 && coupsPossibles.size() > 0)
 		{
 			int valeur = MINVAL;
-			
-			ArrayList<Integer> coupsPossibles = jeu.getCoupsPossible();
 			for(int col : coupsPossibles)
 			{
 				jeu.jouerCoupTmp(col, this);
@@ -110,38 +121,33 @@ public class IAMinMax extends Ordinateur {
 		}
 		else
 		{
-			return eval(jeu);
+			return eval(jeu, 0);
 		}
 	}
 	
-	private int eval(Jeu jeu)
+	private int eval(Jeu jeu, int val)
 	{
-		int valeur = 0;
-		if (jeu.verifierGagnant(this))
-			valeur = MAXVAL;
-		
-		if (jeu.verifierGagnant(autreJoueur))
-			valeur = MINVAL;
+		int valeur = val;
 		
 		for (int i = 2; i <= jeu.getNbAligneMax(); i++)
 		{
-			int multiple = 1;
+			int mutliple = 2;
 			switch (i)
 			{
 				case 3:
-					multiple = 3;
+					mutliple = 5;
 					break;
 				case 4:
-					multiple = 9;
+					mutliple = 10;
 					break;
 				case 5:
-					multiple = 27;
+					mutliple = 20;
 					break;
 				case 6:
-					multiple = 81;
+					mutliple = 50;
 					break;
 			}
-			valeur += multiple * jeu.nombreAlignement(i, this);
+			valeur += mutliple * jeu.nombreAlignement(i, this);
 		}
 		
 		return valeur;
