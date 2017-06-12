@@ -5,7 +5,10 @@ import javax.swing.JFrame;
 import Moteur.Joueur;
 import Moteur.PuissanceMode;
 import Score.GestionnaireScore;
-
+/**
+ * Class Application qui est la class principale de gestion de l'application Puissance X
+ * Elle permet d'afficher les différents panels.
+ */
 public class Application {
 	private final JFrame frame = new JFrame("Puissance X");
 	private GestionnaireScore gs;

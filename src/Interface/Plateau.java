@@ -157,6 +157,10 @@ public class Plateau extends JPanel{
 	
 	}
 	
+	/**
+	 * Permet de changer la couleur du joueur courrant.
+	 * @param couleur La couleur du joueur courrant
+	 */
 	public void setCouleurJC(Case couleur)
 	{
 		couleurJC.setColor(couleur);
@@ -207,6 +211,9 @@ public class Plateau extends JPanel{
 		
 	}
 	
+	/**
+	 * Permet d'actualiser et d'afficher les informations de fin de partie
+	 */
 	public void partieFinie()
 	{
 		String nomJ1 = partie.getJoueur1().getNom();

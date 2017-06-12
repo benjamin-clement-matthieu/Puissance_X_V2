@@ -13,7 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Moteur.Case;
-
+/**
+ * Class PGrille correspondant à l'interface de la grille du Puissance X
+ */
 public class PGrille extends JPanel {
 	Rond[][] grille;
 	public static ClickColEvent click = new ClickColEvent();
@@ -29,19 +31,19 @@ public class PGrille extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		
-		try {
+		/*try {
 			Image img = ImageIO.read(new File("fond-bleu.jpg"));
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 	private void initGrille() {
 		int tailleRond = -1;
 		buttons = new ArrayList<JButton>();
-		
+		// Taille des ronds en fonction de la taille de la grille
 		switch(nbColonne)
 		{
 			case 7:
@@ -78,7 +80,10 @@ public class PGrille extends JPanel {
 			}
 		}
 	}
-	
+	/**
+	 * Permet d'activer les boutons de la grille
+	 * @param val True pour activer, False pour désactiver
+	 */
 	public void enableButtons(boolean val)
 	{
 		for (JButton button : buttons) {
@@ -86,6 +91,10 @@ public class PGrille extends JPanel {
 		}
 	}
 
+	/**
+	 * Permet de synchroniser la grille interface avec celle du moteur de jeu
+	 * @param g Grille du moteur de jeu
+	 */
 	public void actualise(Case[][] g) {
 		for (int i = 0; i < nbColonne; i++)
 			for (int j = 0; j < nbLigne; j++)

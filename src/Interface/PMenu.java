@@ -12,15 +12,17 @@ import IA.IARandom;
 import Moteur.Case;
 import Moteur.Humain;
 import Score.JoueurScore;
-
+/**
+ * Class Menu qui permet de gérer le menu principale
+ *
+ */
 public class PMenu extends JPanel implements ActionListener{
-	final String TITRE = "PUISSANCE X";
-	JButton bIAvIA = new JButton("IA vs IA");
-	JButton bJvIA = new JButton("Joueur vs IA");
-	JButton bJvJ = new JButton("Joueur vs Joueur");
-	JButton bScores = new JButton("Scores");
-	JButton bOptions = new JButton("Options");
-	Font f = new Font("Serif", Font.PLAIN, 36);
+	private JButton bIAvIA = new JButton("IA vs IA");
+	private JButton bJvIA = new JButton("Joueur vs IA");
+	private JButton bJvJ = new JButton("Joueur vs Joueur");
+	private JButton bScores = new JButton("Scores");
+	private JButton bOptions = new JButton("Options");
+	private Font f = new Font("Serif", Font.PLAIN, 36);
 	private final Application app;
 	
 	public PMenu(final Application application){
