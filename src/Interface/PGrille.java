@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import Moteur.Case;
 /**
- * Class PGrille correspondant à l'interface de la grille du Puissance X
+ * Class PGrille correspondant ï¿½ l'interface de la grille du Puissance X
  */
 public class PGrille extends JPanel {
 	Rond[][] grille;
@@ -31,13 +31,13 @@ public class PGrille extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		
-		/*try {
+		try {
 			Image img = ImageIO.read(new File("fond-bleu.jpg"));
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-		}*/
+		}
 	}
 	
 	private void initGrille() {
@@ -82,7 +82,7 @@ public class PGrille extends JPanel {
 	}
 	/**
 	 * Permet d'activer les boutons de la grille
-	 * @param val True pour activer, False pour désactiver
+	 * @param val True pour activer, False pour dï¿½sactiver
 	 */
 	public void enableButtons(boolean val)
 	{
