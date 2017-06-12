@@ -3,7 +3,10 @@ import java.text.DecimalFormat;
 import java.util.Random;
 
 import Interface.Plateau;
-
+/**
+ * Class Partie qui permet de gérer une partie de Puissance X
+ *
+ */
 public class Partie {
 	private Joueur[] joueurs;
 	private Plateau plateau;
@@ -67,12 +70,12 @@ public class Partie {
 		plateau.partieFinie();
 		partieFinie = true;
 		
-		/*if (nbPartie < 1000)
+		/*if (nbPartie < 100)
 			plateau.recommencer();
 		else
 		{
 			System.out.println(pourcentage(nbWinJ1, nbPartie));
-		} */
+		}*/
 	}
 	
 	private String pourcentage(int a,int b){
@@ -86,6 +89,9 @@ public class Partie {
         return df.format(resultatFinal) + " %";
     }
 	
+	/**
+	 * Permet d'arrêter une partie en cours
+	 */
 	public void dispose()
 	{
 		disposed = true;
@@ -116,12 +122,20 @@ public class Partie {
 		return joueur2;
 	}
 	
+	/**
+	 * Permet d'avoir l'autre joueur que celui passé en paramètre
+	 * @param joueur
+	 * @return L'autre joueur que celui passé en paramètre
+	 */
 	public Joueur getJoueurSuivant(Joueur joueur)
 	{
 		return (joueur == joueur1) ? joueur2 : joueur1;
 	}
 	
-	// Retourne null si il n'y a pas de partie en cours
+	/**
+	 * Permet d'avoir le joueur courrant.
+	 * @return Le joueur courrant
+	 */
 	public Joueur getJoueurCourrant()
 	{
 		if (partieFinie)

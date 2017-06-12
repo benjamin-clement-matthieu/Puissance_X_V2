@@ -25,7 +25,7 @@ public class Humain implements Joueur {
 				
 				selectedCol = Interface.PGrille.click.getSelectedCol();
 
-			} while (!jeu.jouerCoup(selectedCol, this));
+			} while (!jeu.jouerCoup(selectedCol, this)); // Tant que le coup n'est pas possible
 
 		} catch (InterruptedException e) {
 			e.printStackTrace();

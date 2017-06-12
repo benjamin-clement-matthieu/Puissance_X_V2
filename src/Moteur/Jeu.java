@@ -2,7 +2,10 @@ package Moteur;
 import java.util.ArrayList;
 
 import Interface.Plateau;
-
+/**
+ * Class Jeu contenant plusieurs fonctions de gestion de la grille principale du Puissance X
+ *
+ */
 public class Jeu {
 	private Case[][] grille;
 	private int tHorizontale;
@@ -41,6 +44,12 @@ public class Jeu {
 				grille[i][j] = Case.VIDE;
 	}
 	
+	/**
+	 * Joue un coup
+	 * @param col Colonne du coup
+	 * @param joueur Joueur qui joue le coup
+	 * @return True si le coup a pu être joué, sinon False
+	 */
 	public boolean jouerCoup(int col, Joueur joueur)
 	{
 		if (col <= tVerticale &&  col >= 0)
@@ -51,8 +60,11 @@ public class Jeu {
 				// Si une case est vide, le coup peut Ãªtre jouÃ©
 				if (grille[col][i] == Case.VIDE)
 				{
-					ligneChoisie = i;
-					break;
+					grille[col][i] = joueur.getCouleur();
+					plateau.getPGrille().actualise(grille);
+					return true;
+					/*ligneChoisie = i;
+					break; */
 				}
 					
 			// ANIMATION
@@ -93,8 +105,13 @@ public class Jeu {
 		
 		return false;
 	}
+	/**
+	 * Joue un coup sans animation et sans actualiser l'interface, elle permet de tester un coup.
+	 * @param col Colonne du coup
+	 * @param joueur Joueur qui joue le coup
+	 * @return True si le coup a pu être joué, sinon False
+	 */
 	
-	// Joue un coup sans animation et sans actualiser l'interface
 	public boolean jouerCoupTmp(int col, Joueur joueur)
 	{
 		for(int i = tVerticale - 1; i >= 0; i--)
@@ -106,9 +123,14 @@ public class Jeu {
 		return false;
 	}
 	
-	// Annule le coup sans actualiser l'interface
+	/**
+	 * Annule le coup sans actualiser l'interface, elle permet de retirer un coup de test.
+	 * @param col Colonne du coup
+	 */
+	
 	public void annulerCoup(int col)
 	{
+		// Trouve enleve la première case non vide de la colonne
 		for(int i = 0; i < tVerticale; i++)
 			if (grille[col][i] != Case.VIDE)
 			{
@@ -117,12 +139,21 @@ public class Jeu {
 			}
 	}
 	
+	/**
+	 * Permet si savoir si la grille est pleine.
+	 * @return True si la grille est plein, sinon False
+	 */
 	public boolean grillePleine()
 	{
 		// S'il n'y a pas de coup possible, la grille est pleine
 		return getCoupsPossible().size() == 0;
 	}
 	
+	/**
+	 * Vérifie si le joueur a gagné.
+	 * @param joueur Le joueur qui doit être vérifié
+	 * @return True si le joueur a gagné, sinon False
+	 */
 	public boolean verifierGagnant(Joueur joueur)
 	{
 		for (int i = 0; i < tHorizontale; i++)
@@ -137,6 +168,10 @@ public class Jeu {
 		return false;
 	}
 	
+	/**
+	 * Permet d'avoir les coups possibles.
+	 * @return Liste d'entiers des colonnes jouables.
+	 */
 	// Retourne les coups possible
 	public ArrayList<Integer> getCoupsPossible()
 	{
@@ -149,10 +184,20 @@ public class Jeu {
 		return tmp;
 	}
 	
-	// Permet de vÃ©rifier s'il a y 3 jetons alignÃ©s dans une direction
+	/**
+	 * Permet de vérifier s'il y a nbAligne jetons alignés dans une direction à partir d'un point x,y
+	 * et s'il est possible d'avoir nbAligneMax jetons alignés dans cette même direction
+	 * @param j Le joueur a vérifier
+	 * @param x Numéro de la colonne
+	 * @param y Numéro de la ligne
+	 * @param direction Compris entre 0 et 7 pour indiquer la direction (ex: 0 correspont au Nord)
+	 * @param nbAligne Nombre de jeton alignés a tester
+	 * @return True si il y a nbAligne de jeton alignés et s'il est possible d'en aligner 
+	 * le nombre maximale pour gagner, sinon False
+	 */
 	private boolean verifierDirection(Joueur j, int x, int y, int direction, int nbAligne)
 	{
-		for (int i = 1; i < nbAligne; i++)
+		for (int i = 1; i < nbAligneMax; i++)
 		{
 			int x2 = x;
 			int y2 = y;
@@ -189,14 +234,32 @@ public class Jeu {
 					break;
 			}
 			
-			// Si la case n'est pas celle du joueur ou si le point x2,y2 n'est pas dans la grille
-			if (!estDansLaGrille(x2,y2) || grille[x2][y2] != j.getCouleur())
+			//Si le point x2,y2 n'est pas dans la grille il n'y a donc pas d'alignement
+			if (!estDansLaGrille(x2,y2))
+				return false;
+			
+			// Si la case n'est pas celle du joueur
+			// et si on test toujours s'il y a nbAligne de jetons aligné
+			if (grille[x2][y2] != j.getCouleur() && i < nbAligne)
+				return false;
+			
+			// Si une des cases est celle d'un joueur adversaire, il n'est pas possible d'aligner
+			// nbAligneMax de jetons
+			if (grille[x2][y2] != j.getCouleur() && grille[x2][y2] != Case.VIDE)
 				return false;
 		}
+		
 		
 		return true;
 	}
 	
+	/**
+	 * Permet de compter les alignements de nbAligne jetons pour un joueur donné
+	 * et s'il est possible d'en aller nbAligneMax.
+	 * @param nbAligne Nombre de jetons alignés à compter
+	 * @param joueur Le joueur a tester
+	 * @return Le nombre d'alignement.
+	 */
 	public int nombreAlignement(int nbAligne, Joueur joueur)
 	{
 		int count = 0;
@@ -209,6 +272,12 @@ public class Jeu {
 		return count;
 	}
 	
+	/**
+	 * Permet de savoir si le point x, y est dans la grille
+	 * @param x Numéro de la colonne
+	 * @param y Numéro de la ligne
+	 * @return	True si le point est dans la grille, sinon False
+	 */
 	public boolean estDansLaGrille(int x, int y)
 	{
 		// On enlÃ¨ve 1 Ã  la taille Horizontale et Verticale car le tableau commence Ã  0 et non pas 1
@@ -218,30 +287,47 @@ public class Jeu {
 		return !(x > tH || x < 0 || y > tV || y < 0);
 	}
 	
-	// Retourne le plateau qui contient l'interface
+	/**
+	 * Permet d'avoir le plateau
+	 * @return Le plateau
+	 */
 	public Plateau getPlateau()
 	{
 		return plateau;
 	}
 	
-	// Retourne la grille du jeu
+
+	/**
+	 * Permet d'avoir la grille
+	 * @return La grille
+	 */
 	public Case[][] getGrille()
 	{
 		return grille;
 	}
 	
-	// Retourne la taille horizontale de la grille
+	/**
+	 * Permet d'avoir la largeur de la grille
+	 * @return La largeur de la grille
+	 */
 	public int getTHorizontale()
 	{
 		return tHorizontale;
 	}
 	
-	// Retourne la taille verticale de la grille
+	/**
+	 * Permet d'avoir la hauteur de la grille
+	 * @return La grille hauteur de la grille
+	 */
 	public int getTVerticale()
 	{
 		return tVerticale;
 	}
 	
+	/**
+	 * Permet d'avoir le nombre d'alignement de jeton pour gagner une partie
+	 * @return Le nombre d'alignement de jeton pour gagner une partie
+	 */
 	public int getNbAligneMax()
 	{
 		return nbAligneMax;
