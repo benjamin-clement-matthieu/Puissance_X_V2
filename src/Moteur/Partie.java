@@ -3,6 +3,7 @@ import java.text.DecimalFormat;
 import java.util.Random;
 
 import Interface.Plateau;
+import Interface.SoundEffect;
 /**
  * Class Partie qui permet de g�rer une partie de Puissance X
  *
@@ -46,6 +47,8 @@ public class Partie {
 			
 			plateau.setCouleurJC(joueurs[jCourrant].getCouleur());
 			joueurs[jCourrant].jouer(plateau.getJeu());
+			
+			SoundEffect.SON_PIECE.play();
 			
 			if (plateau.getJeu().verifierGagnant(joueurs[jCourrant]))
 			{
