@@ -7,19 +7,18 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JButton;
 
 public class JCoolButton extends JButton {
 
-	/**
-	     * 
-	     */
-	private static final long serialVersionUID = 1671314658637614873L;
 	private int inset = 5;
 	private Color buttonColor = Color.blue.brighter().brighter().brighter().brighter();
-
+	private Color vGradientEndColor;
+	
 	public JCoolButton(String aNameString) {
 		super(aNameString);
 		setContentAreaFilled(false);
@@ -43,7 +42,15 @@ public class JCoolButton extends JButton {
 
 		// Create the gradient paint for the first layer of the button
 		Color vGradientStartColor = buttonColor.darker().darker().darker();
-		Color vGradientEndColor = buttonColor.brighter().brighter().brighter();
+		if (getModel().isPressed())
+			vGradientEndColor = buttonColor.darker().darker().darker();
+		else if (getModel().isRollover())
+		{
+			vGradientEndColor = buttonColor.brighter().brighter().brighter().brighter();
+		}
+		else
+			vGradientEndColor = buttonColor.brighter();
+		
 		Paint vPaint = new GradientPaint(0, inset, vGradientStartColor, 0, vButtonHeight, vGradientEndColor, false);
 		g2d.setPaint(vPaint);
 
@@ -57,8 +64,24 @@ public class JCoolButton extends JButton {
 		int vHighlightArcSize = vButtonHighlightHeight;
 
 		// Create the paint for the second layer of the button
-		vGradientStartColor = Color.WHITE;
-		vGradientEndColor = buttonColor.brighter();
+		
+		if (getModel().isPressed())
+		{
+			vGradientStartColor = buttonColor.darker().darker().darker();
+			vGradientEndColor = buttonColor.darker().darker().darker();
+		}
+		else if (getModel().isRollover())
+		{
+			vGradientStartColor = Color.LIGHT_GRAY;
+			vGradientEndColor = buttonColor.brighter().brighter().brighter().brighter();
+		}
+		else
+		{
+			vGradientStartColor = Color.WHITE;
+			vGradientEndColor = buttonColor.brighter();
+		}
+			
+		
 		vPaint = new GradientPaint(0, inset + vHighlightInset, vGradientStartColor, 0,
 				inset + vHighlightInset + (vButtonHighlightHeight / 2), buttonColor.brighter(), false);
 

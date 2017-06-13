@@ -22,7 +22,7 @@ public class PScores extends JPanel{
 
 	final String TITRE = "PUISSANCE X";
 	JLabel Titre = new JLabel("TOP SCORES");
-	JButton score1 = new JButton("<");
+	JCoolButton score1 = new JCoolButton("<");
 	Font f = new Font("Serif", Font.PLAIN, 50);
 
 	
