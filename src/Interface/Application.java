@@ -28,8 +28,6 @@ public class Application {
 	
 	public void montrerMenu()
 	{
-		
-		frame.setSize(700, 700);
 	    frame.setContentPane(new PMenu(this));
 
 	    frame.getContentPane().setBackground(Color.ORANGE);
@@ -50,7 +48,6 @@ public class Application {
 	
 	public void montrerScores()
 	{
-		frame.setSize(700, 700);
 	    frame.setContentPane(new PScores(this));
 	    frame.getContentPane().setBackground(Color.ORANGE);
 	    frame.setVisible(true);
@@ -65,7 +62,6 @@ public class Application {
 	
 	public void montrerPlateau(Joueur j1, Joueur j2)
 	{
-		frame.setSize(900, 700);
 		frame.setContentPane(new Plateau(j1, j2, this));
 	    frame.getContentPane().setBackground(Color.ORANGE);
 		frame.setVisible(true);

@@ -58,11 +58,11 @@ public class Plateau extends JPanel {
 
 		// Label du joueur courrant
 		jCourrant = new JLabel("Joueur en cours :");
-		jCourrant.setBounds(600, 250, 150, 50);
+		jCourrant.setBounds(110, 20, 150, 50);
 
 		// Label du gagnant
 		jGagnant = new JLabel();
-		jGagnant.setBounds(600, 350, 300, 50);
+		jGagnant.setBounds(200, 20, 300, 50);
 
 		JCoolButton bMenu = new JCoolButton("Menu");
 		bMenu.setPreferredSize(new Dimension(80, 50));
@@ -96,29 +96,29 @@ public class Plateau extends JPanel {
 		setLayout(null);
 
 		// Pseudo joueur 1 (avec sa couleur)
-		lJoueur1.setBounds(50, 35, 180, 20);
+		lJoueur1.setBounds(120, 520, 200, 20);
 		this.add(lJoueur1);
 
-		couleurJ1.setBounds(230, 20, 50, 50);
+		couleurJ1.setBounds(300, 505, 50, 50);
 		this.add(couleurJ1);
 
 		// Pseudo joueur 2 (avec sa couleur)
-		lJoueur2.setBounds(50, 590, 200, 20);
+		lJoueur2.setBounds(420, 520, 200, 20);
 		this.add(lJoueur2);
 
-		couleurJ2.setBounds(230, 575, 50, 50);
+		couleurJ2.setBounds(350, 505, 50, 50);
 		this.add(couleurJ2);
 
 		// Grille
-		pGrille.setBounds(50, 80, 490, 490);
+		pGrille.setBounds(100, 80, 490, 420);
 		this.add(pGrille);
 
 		// Bouton menu
-		bMenu.setBounds(650, 100, 200, 50);
+		bMenu.setBounds(360, 570, 200, 50);
 		this.add(bMenu);
 
 		// Bouton recommencer
-		bRecommencer.setBounds(650, 170, 200, 50);
+		bRecommencer.setBounds(150, 570, 200, 50);
 		this.add(bRecommencer);
 	}
 

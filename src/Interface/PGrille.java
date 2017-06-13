@@ -50,10 +50,10 @@ public class PGrille extends JPanel {
 				tailleRond = 65;
 				break;
 			case 8:
-				tailleRond = 58;
+				tailleRond = 55;
 				break;
 			case 9:
-				tailleRond = 51;
+				tailleRond = 48;
 				break;
 		}
 		this.setLayout(new GridLayout(nbLigne, nbColonne));
