@@ -47,13 +47,13 @@ public class Plateau extends JPanel {
 		if (partie.getJoueur2() instanceof Humain)
 			lJoueur2.setText("Joueur 2 : " + nomJ2 + "  " + app.getGestionnaireScore().getJoueurScore(nomJ2));
 
-		Rond couleurJ1 = new Rond(40);
+		Rond couleurJ1 = new Rond(40, -1);
 		couleurJ1.setColor(partie.getJoueur1().getCouleur());
 
-		Rond couleurJ2 = new Rond(40);
+		Rond couleurJ2 = new Rond(40, -1);
 		couleurJ2.setColor(partie.getJoueur2().getCouleur());
 
-		couleurJC = new Rond(40);
+		couleurJC = new Rond(40, -1);
 		couleurJC.setBounds(750, 250, 200, 50);
 
 		// Label du joueur courrant

@@ -10,16 +10,23 @@ import Moteur.Case;
 public class Rond extends JPanel {
 	private Color currentColor = Color.WHITE;
 	private int dimension;
+	private int colonne;
 	
-	public Rond(int dim)
+	public Rond(int dim, int colonne)
 	{
-		dimension = dim;
+		this.dimension = dim;
+		this.colonne = colonne;
 	}
 	
 	public void paintComponent(Graphics g) {
 		
 	    g.setColor(currentColor);
 		g.fillOval(2, 2, dimension, dimension);
+	}
+	
+	public int getColonne()
+	{
+		return colonne;
 	}
 	
 	public void setColor(Case color)

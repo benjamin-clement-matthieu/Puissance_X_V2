@@ -10,7 +10,7 @@ public class Humain implements Joueur {
 	}
 
 	@Override
-	public void jouer(Jeu jeu) {
+	public boolean jouer(Jeu jeu) {
 		try {
 
 			int selectedCol;
@@ -21,7 +21,7 @@ public class Humain implements Joueur {
 				}
 				
 				if (jeu.getPlateau().getPartie().estArrete())
-					break;
+					return false;
 				
 				selectedCol = Interface.PGrille.click.getSelectedCol();
 
@@ -30,6 +30,8 @@ public class Humain implements Joueur {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		return true;
 	}
 
 	@Override

@@ -4,6 +4,6 @@ public interface Joueur {
 	public Case getCouleur();
 	public String getNom();
 	
-	public void jouer(Jeu jeu);
+	public boolean jouer(Jeu jeu);
 }
 

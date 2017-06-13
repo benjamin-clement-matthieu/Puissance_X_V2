@@ -34,7 +34,7 @@ public class IAMinMax extends Ordinateur {
 	}
 	
 	@Override
-	public void jouer(Jeu jeu) {
+	public boolean jouer(Jeu jeu) {
 		autreJoueur = jeu.getPlateau().getPartie().getJoueurSuivant(this);
 		int max = MINVAL;
 		ArrayList<Integer> coupsPossibles = jeu.getCoupsPossible();
@@ -66,7 +66,7 @@ public class IAMinMax extends Ordinateur {
 		Collections.shuffle(coupsChoisies);
 		//System.out.println(getCouleur() + " : " + coupsChoisies.get(0));
 		//System.out.println("Coup jou� : " + coupsChoisies.get(0));
-		jeu.jouerCoup(coupsChoisies.get(0), this);
+		return jeu.jouerCoup(coupsChoisies.get(0), this);
 	}
 	
 	private int min(Jeu jeu, int prof)

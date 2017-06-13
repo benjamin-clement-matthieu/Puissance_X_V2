@@ -45,10 +45,10 @@ public class Partie {
 			else
 				plateau.getPGrille().enableButtons(false);
 			
+			plateau.getPGrille().click.setClicked(false);
 			plateau.setCouleurJC(joueurs[jCourrant].getCouleur());
-			joueurs[jCourrant].jouer(plateau.getJeu());
-			
-			SoundEffect.SON_PIECE.play();
+			if (joueurs[jCourrant].jouer(plateau.getJeu()))
+				SoundEffect.SON_PIECE.play();
 			
 			if (plateau.getJeu().verifierGagnant(joueurs[jCourrant]))
 			{
@@ -70,7 +70,8 @@ public class Partie {
 			jCourrant = jCourrant%2;
 		}
 		
-		plateau.partieFinie();
+		if (!disposed)
+			plateau.partieFinie();
 		partieFinie = true;
 	}
 	

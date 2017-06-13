@@ -61,11 +61,11 @@ public class Jeu {
 				// Si une case est vide, le coup peut être joué
 				if (grille[col][i] == Case.VIDE)
 				{
-					grille[col][i] = joueur.getCouleur();
+					/*grille[col][i] = joueur.getCouleur();
 					plateau.getPGrille().actualise(grille);
-					return true;
-					/*ligneChoisie = i;
-					break; */
+					return true;*/
+					ligneChoisie = i;
+					break;
 				}
 					
 			// ANIMATION
@@ -81,7 +81,7 @@ public class Jeu {
 					plateau.getPGrille().actualise(grille);
 					
 					
-					// On attend 50 millisecondes
+					// On attend 20 millisecondes
 					try {
 						Thread.sleep(20);
 					} catch (InterruptedException e) {

@@ -10,11 +10,6 @@ public abstract class Ordinateur implements Joueur {
 	}
 	
 	@Override
-	public void jouer(Jeu jeu) {
-		
-	}
-	
-	@Override
 	public Case getCouleur() {
 		return couleur;
 	}

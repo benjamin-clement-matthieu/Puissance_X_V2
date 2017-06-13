@@ -14,11 +14,11 @@ public class IARandom extends Ordinateur {
 	}
 	
 	@Override
-	public void jouer(Jeu jeu) {
+	public boolean jouer(Jeu jeu) {
 		ArrayList<Integer> coups = jeu.getCoupsPossible();
 		int random = new Random().nextInt(coups.size());
 		
-		jeu.jouerCoup(coups.get(random), this);
+		return jeu.jouerCoup(coups.get(random), this);
 	}
 	
 	

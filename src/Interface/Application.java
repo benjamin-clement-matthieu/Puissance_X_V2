@@ -15,11 +15,11 @@ public class Application {
 	private GestionnaireScore gs;
 	public Application()
 	{	    
-
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(700, 700);
 	    frame.setLocationByPlatform(true);
 	    frame.setLocationRelativeTo(null);
+	    frame.setResizable(false);
 	    gs = new GestionnaireScore("Scores.txt");
 
 	    SoundEffect.init();

@@ -56,10 +56,26 @@ public class PGrille extends JPanel {
 				tailleRond = 51;
 				break;
 		}
-		this.setLayout(new GridLayout(nbLigne + 1, nbColonne));
+		this.setLayout(new GridLayout(nbLigne, nbColonne));
 
-		grille = new Rond[nbLigne + 1][nbColonne];
-		for (int i = 0; i < nbColonne; i++)
+		grille = new Rond[nbLigne][nbColonne];
+		
+		for (int i = 0; i < nbLigne; i++)
+			for (int j = 0; j < nbColonne; j++)
+			{
+				Rond rond = new Rond(tailleRond, j);
+				rond.addMouseListener(click);
+				grille[i][j] = rond;
+			}
+				
+
+		for (int i = 0; i < nbLigne; i++) {
+			for (int j = 0; j < nbColonne; j++) {
+					this.add(grille[i][j]);
+			}
+		}
+		
+		/*for (int i = 0; i < nbColonne; i++)
 			for (int j = 0; j < nbColonne; j++)
 				grille[i][j] = new Rond(tailleRond);
 
@@ -78,7 +94,7 @@ public class PGrille extends JPanel {
 
 				}
 			}
-		}
+		} */
 	}
 	/**
 	 * Permet d'activer les boutons de la grille
