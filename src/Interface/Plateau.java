@@ -1,12 +1,14 @@
 package Interface;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import Moteur.Case;
 import Moteur.Humain;
@@ -27,7 +29,8 @@ public class Plateau extends JPanel {
 	private JLabel jGagnant;
 	private JLabel lJoueur1;
 	private JLabel lJoueur2;
-
+	private Font font = new Font("ARIAL", Font.BOLD, 22);
+	
 	public Plateau(Joueur j1, Joueur j2, final Application appli) {
 		app = appli;
 		initPlateau(j1, j2);
@@ -54,7 +57,7 @@ public class Plateau extends JPanel {
 		couleurJ2.setColor(partie.getJoueur2().getCouleur());
 
 		couleurJC = new Rond(40, -1);
-		couleurJC.setBounds(750, 250, 200, 50);
+		couleurJC.setBounds(250, 20, 200, 50);
 
 		// Label du joueur courrant
 		jCourrant = new JLabel("Joueur en cours :");
@@ -62,7 +65,9 @@ public class Plateau extends JPanel {
 
 		// Label du gagnant
 		jGagnant = new JLabel();
-		jGagnant.setBounds(200, 20, 300, 50);
+		jGagnant.setFont(font);
+		jGagnant.setHorizontalAlignment(SwingConstants.CENTER);
+		jGagnant.setBounds(0, 20, 700, 50);
 
 		JCoolButton bMenu = new JCoolButton("Menu");
 		bMenu.setPreferredSize(new Dimension(80, 50));
@@ -181,10 +186,6 @@ public class Plateau extends JPanel {
 		this.remove(jGagnant);
 		this.repaint();
 
-		// S'il y a au moins un humain, on active les boutons
-		if (partie.getJoueur1() instanceof Humain || partie.getJoueur2() instanceof Humain)
-			pGrille.enableButtons(true);
-
 		partieThread = new Thread() {
 			public void run() {
 				partie.commencer();
@@ -198,11 +199,11 @@ public class Plateau extends JPanel {
 	/**
 	 * Permet d'actualiser et d'afficher les informations de fin de partie
 	 */
-	public void partieFinie() {
+	public void partieFinie(boolean partieGagne) {
 		String nomJ1 = partie.getJoueur1().getNom();
 		String nomJ2 = partie.getJoueur2().getNom();
 
-		if (jeu.grillePleine())
+		if (jeu.grillePleine() && !partieGagne)
 			jGagnant.setText("La grille est pleine ! Aucun gagnant.");
 		else {
 			jGagnant.setText("Le joueur " + partie.getJoueurCourrant().getNom() + " ("
@@ -220,7 +221,6 @@ public class Plateau extends JPanel {
 		this.remove(jCourrant);
 		this.remove(couleurJC);
 		this.add(jGagnant);
-		pGrille.enableButtons(false);
 
 		this.repaint();
 	}

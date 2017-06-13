@@ -21,7 +21,6 @@ public class PGrille extends JPanel {
 	public static ClickColEvent click = new ClickColEvent();
 	private int nbLigne;
 	private int nbColonne;
-	private ArrayList<JButton> buttons;
 	
 	public PGrille(int nbCol, int nbLig) {
 		nbLigne = nbLig;
@@ -42,7 +41,6 @@ public class PGrille extends JPanel {
 	
 	private void initGrille() {
 		int tailleRond = -1;
-		buttons = new ArrayList<JButton>();
 		// Taille des ronds en fonction de la taille de la grille
 		switch(nbColonne)
 		{
@@ -73,37 +71,6 @@ public class PGrille extends JPanel {
 			for (int j = 0; j < nbColonne; j++) {
 					this.add(grille[i][j]);
 			}
-		}
-		
-		/*for (int i = 0; i < nbColonne; i++)
-			for (int j = 0; j < nbColonne; j++)
-				grille[i][j] = new Rond(tailleRond);
-
-		for (int i = 0; i < nbColonne; i++) {
-			for (int j = 0; j < nbColonne; j++) {
-				if (i < nbLigne)
-					this.add(grille[i][j]);
-				else {
-					String name = String.valueOf(j);
-					JButton b = new JButton();
-					buttons.add(b);
-					b.setName(name);
-					b.setEnabled(false);
-					b.addActionListener(click);
-					this.add(b);
-
-				}
-			}
-		} */
-	}
-	/**
-	 * Permet d'activer les boutons de la grille
-	 * @param val True pour activer, False pour d�sactiver
-	 */
-	public void enableButtons(boolean val)
-	{
-		for (JButton button : buttons) {
-		    button.setEnabled(val);
 		}
 	}
 

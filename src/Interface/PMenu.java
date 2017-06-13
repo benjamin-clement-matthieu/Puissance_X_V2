@@ -4,8 +4,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import IA.IAMinMax;
 import Moteur.Case;
@@ -20,28 +21,38 @@ public class PMenu extends JPanel implements ActionListener{
 	private JCoolButton bJvJ = new JCoolButton("Joueur vs Joueur");
 	private JCoolButton bScores = new JCoolButton("Scores");
 	private JCoolButton bOptions = new JCoolButton("Options");
-	private Font f = new Font("Serif", Font.PLAIN, 36);
+	private JLabel lTitre = new JLabel("PUISSANCE X");
+	private Font buttonFont = new Font("Serif", Font.PLAIN, 26);
+	private Font titreFont = new Font("ARIAL", Font.BOLD, 45);
 	private final Application app;
+	private int buttonWidth = 350;
+	private int buttonHeight = 70;
 	
 	public PMenu(final Application application){
 		this.app = application;
 		setLayout(null);
-		bIAvIA.setBounds(100, 50, 500, 100);
-		bIAvIA.setFont(f); 
-		bJvIA.setBounds(100, 150, 500, 100);
-		bJvIA.setFont(f); 
-		bJvJ.setBounds(100, 250, 500, 100);
-		bJvJ.setFont(f); 
-		bScores.setBounds(100, 350, 500, 100);
-		bScores.setFont(f); 
-		bOptions.setBounds(100, 550, 500, 100);
-		bOptions.setFont(f);
+		lTitre.setBounds(175, 20, 350, 100);
+		lTitre.setHorizontalTextPosition(SwingConstants.CENTER);
+		lTitre.setFont(titreFont);
+		lTitre.setForeground(Color.RED);
+		
+		bIAvIA.setBounds(175, 150, buttonWidth, buttonHeight);
+		bIAvIA.setFont(buttonFont); 
+		bJvIA.setBounds(175, 220, buttonWidth, buttonHeight);
+		bJvIA.setFont(buttonFont); 
+		bJvJ.setBounds(175, 290, buttonWidth, buttonHeight);
+		bJvJ.setFont(buttonFont); 
+		bScores.setBounds(175, 360, buttonWidth, buttonHeight);
+		bScores.setFont(buttonFont); 
+		bOptions.setBounds(175, 550, buttonWidth, buttonHeight);
+		bOptions.setFont(buttonFont);
 		
 		this.add(bIAvIA);
 		this.add(bJvIA);
 		this.add(bJvJ);
 		this.add(bScores);
 		this.add(bOptions);
+		this.add(lTitre);
 		
 		bIAvIA.addActionListener(this);
 		bJvIA.addActionListener(this);

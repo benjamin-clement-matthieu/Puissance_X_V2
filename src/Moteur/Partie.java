@@ -17,9 +17,6 @@ public class Partie {
 	private boolean disposed;
 	private boolean partieFinie;
 	
-	private int nbWinJ1 = 0;
-	private int nbPartie = 0;
-	
 	public Partie(Joueur j1, Joueur j2, Plateau plateau)
 	{
 		this.joueur1 = j1;
@@ -37,14 +34,9 @@ public class Partie {
 	{
 		partieFinie = false;
 		jCourrant = new Random().nextInt(2);
-		nbPartie++;
+		boolean partieGagne = false;
 		while(!disposed)
-		{
-			if (joueurs[jCourrant] instanceof Humain)
-				 plateau.getPGrille().enableButtons(true);
-			else
-				plateau.getPGrille().enableButtons(false);
-			
+		{			
 			plateau.getPGrille().click.setClicked(false);
 			plateau.setCouleurJC(joueurs[jCourrant].getCouleur());
 			if (joueurs[jCourrant].jouer(plateau.getJeu()))
@@ -52,39 +44,23 @@ public class Partie {
 			
 			if (plateau.getJeu().verifierGagnant(joueurs[jCourrant]))
 			{
-				if (joueurs[jCourrant] == joueur1)
-				{
-					nbWinJ1++;
-				}
-				//System.out.println("Le joueur " + joueurs[jCourrant].getNom() + " : " + joueurs[jCourrant].getCouleur() + " a gagné");
+				partieGagne = true;
 				break;
 			}
 			
 			
 			if (plateau.getJeu().grillePleine())
-			{
-				System.out.println("La grille est pleine !");
 				break;
-			}
+			
 			jCourrant++;
 			jCourrant = jCourrant%2;
 		}
 		
 		if (!disposed)
-			plateau.partieFinie();
+			plateau.partieFinie(partieGagne);
+		
 		partieFinie = true;
 	}
-	
-	private String pourcentage(int a,int b){
-        double c = new Double(b);
- 
-        double resultat = a/c;
-        double resultatFinal = resultat*100;
- 
- 
-        DecimalFormat df = new DecimalFormat("###.##");
-        return df.format(resultatFinal) + " %";
-    }
 	
 	/**
 	 * Permet d'arr�ter une partie en cours
