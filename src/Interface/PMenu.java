@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import IA.IAAlphaBeta;
 import IA.IAMinMax;
 import Moteur.Case;
 import Moteur.Humain;
@@ -67,8 +68,8 @@ public class PMenu extends JPanel implements ActionListener{
 		// Bouton IA vs IA
 		if (e.getSource() == bIAvIA)
 		{
-			IAMinMax r1 = new IAMinMax(Case.ROUGE);
-	    	IAMinMax r2 = new IAMinMax(Case.JAUNE);
+			IAAlphaBeta r1 = new IAAlphaBeta(Case.ROUGE);
+			IAAlphaBeta r2 = new IAAlphaBeta(Case.JAUNE);
 			app.montrerPlateau(r1, r2);
 		}
 		// Bouton Joueur vs IA
@@ -81,7 +82,7 @@ public class PMenu extends JPanel implements ActionListener{
 					{
 						app.getGestionnaireScore().ajouterJoueur(nom);
 						Humain j = new Humain(nom, Case.ROUGE);
-					   	IAMinMax r1 = new IAMinMax(Case.JAUNE);
+					   	IAAlphaBeta r1 = new IAAlphaBeta(Case.JAUNE);
 						app.montrerPlateau(j, r1);
 					}
 				}
