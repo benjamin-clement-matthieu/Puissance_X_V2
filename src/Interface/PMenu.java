@@ -1,27 +1,25 @@
 package Interface;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import IA.IAMinMax;
-import IA.IARandom;
 import Moteur.Case;
 import Moteur.Humain;
-import Score.JoueurScore;
 /**
  * Class Menu qui permet de g�rer le menu principale
  *
  */
 public class PMenu extends JPanel implements ActionListener{
-	private JButton bIAvIA = new JButton("IA vs IA");
-	private JButton bJvIA = new JButton("Joueur vs IA");
-	private JButton bJvJ = new JButton("Joueur vs Joueur");
-	private JButton bScores = new JButton("Scores");
-	private JButton bOptions = new JButton("Options");
+	private JCoolButton bIAvIA = new JCoolButton("IA vs IA");
+	private JCoolButton bJvIA = new JCoolButton("Joueur vs IA");
+	private JCoolButton bJvJ = new JCoolButton("Joueur vs Joueur");
+	private JCoolButton bScores = new JCoolButton("Scores");
+	private JCoolButton bOptions = new JCoolButton("Options");
 	private Font f = new Font("Serif", Font.PLAIN, 36);
 	private final Application app;
 	

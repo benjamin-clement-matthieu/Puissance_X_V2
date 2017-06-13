@@ -1,11 +1,11 @@
 package Interface;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,7 +16,7 @@ import Moteur.PuissanceMode;
 
 public class POptions extends JPanel implements ActionListener {
 	
-	private JButton back = new JButton("<");
+	private JCoolButton back = new JCoolButton("<");
 	private JRadioButton jr1 = new JRadioButton("Facile");
 	private JRadioButton jr2 = new JRadioButton("Moyen");
 	private JRadioButton jr3 = new JRadioButton("Difficile");
@@ -24,6 +24,7 @@ public class POptions extends JPanel implements ActionListener {
 	private JRadioButton jrP5 = new JRadioButton("Puissance 5");
 	private JRadioButton jrP6 = new JRadioButton("Puissance 6");
 	private JLabel lDifficulte = new JLabel("Difficulté :");
+	private JLabel lSon = new JLabel("Son :");
 	private JLabel lPuissanceMode = new JLabel("Puissance mode :");
 	private ButtonGroup bgDifficulte = new ButtonGroup();
 	private ButtonGroup bgPuissanceMode = new ButtonGroup();
@@ -61,7 +62,9 @@ public class POptions extends JPanel implements ActionListener {
 		}
 		
 		check1.setSelected(Options.Valeurs.getSonActive());
-		
+		lDifficulte.setForeground(Color.blue);
+		lPuissanceMode.setForeground(Color.blue);
+		lSon.setForeground(Color.blue);
 		back.addActionListener(this);
 		jr1.addActionListener(this);
 		jr2.addActionListener(this);
@@ -73,17 +76,28 @@ public class POptions extends JPanel implements ActionListener {
 		
 		back.setBounds(0, 570, 100, 100);
 		back.setFont(f);
+
+
 		jr1.setBounds(100, 100, 100, 100);
 		jr2.setBounds(300, 100, 100, 100);
 		jr3.setBounds(500, 100, 100, 100);
 		jrP4.setBounds(100, 300, 200, 100);
 		jrP5.setBounds(300, 300, 200, 100);
 		jrP6.setBounds(500, 300, 200, 100);
-		check1.setBounds(300, 450, 100, 100);
+		check1.setBounds(300, 500, 100, 100);
 		lDifficulte.setBounds(250, 25, 200, 100);
 		lDifficulte.setFont(f);
 		lPuissanceMode.setBounds(175, 200, 350, 100);
 		lPuissanceMode.setFont(f);
+		jr1.setBackground(Color.ORANGE);
+		jr2.setBackground(Color.ORANGE);
+		jr3.setBackground(Color.ORANGE);
+		jrP4.setBackground(Color.ORANGE);
+		jrP5.setBackground(Color.ORANGE);
+		jrP6.setBackground(Color.ORANGE);
+		lSon.setBounds(300, 425, 350, 100);
+		lSon.setFont(f);
+		check1.setBackground(Color.ORANGE);
 		setLayout(null);
 		this.add(check1);
 		this.add(back);
@@ -95,6 +109,7 @@ public class POptions extends JPanel implements ActionListener {
 		this.add(jrP5);
 		this.add(jrP6);
 		this.add(lPuissanceMode);
+		this.add(lSon);
 		bgDifficulte.add(jr1);
 		bgDifficulte.add(jr2);
 		bgDifficulte.add(jr3);

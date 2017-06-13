@@ -1,9 +1,10 @@
 package Interface;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 
 import Moteur.Joueur;
-import Moteur.PuissanceMode;
 import Score.GestionnaireScore;
 /**
  * Class Application qui est la class principale de gestion de l'application Puissance X
@@ -13,23 +14,27 @@ public class Application {
 	private final JFrame frame = new JFrame("Puissance X");
 	private GestionnaireScore gs;
 	public Application()
-	{
+	{	    
+
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(700, 700);
 	    frame.setLocationByPlatform(true);
 	    frame.setLocationRelativeTo(null);
 	    gs = new GestionnaireScore("Scores.txt");
-	    
+
 	    SoundEffect.init();
-	    
 	    montrerMenu();
 	}
 	
 	public void montrerMenu()
 	{
+		
 		frame.setSize(700, 700);
 	    frame.setContentPane(new PMenu(this));
+
+	    frame.getContentPane().setBackground(Color.ORANGE);
 	    frame.setVisible(true);
+
 	}
 	
 	public String montrerPseudo(int numJoueur)
@@ -37,6 +42,7 @@ public class Application {
 		PPseudo pseudo = new PPseudo(this, numJoueur);
 		frame.setSize(700, 700);
 	    frame.setContentPane(pseudo);
+	    frame.getContentPane().setBackground(Color.ORANGE);
 	    frame.setVisible(true);
 	    
 	    return pseudo.getSelectedNom();
@@ -46,12 +52,14 @@ public class Application {
 	{
 		frame.setSize(700, 700);
 	    frame.setContentPane(new PScores(this));
+	    frame.getContentPane().setBackground(Color.ORANGE);
 	    frame.setVisible(true);
 	}
 	
 	public void montrerOptions()
 	{
 	    frame.setContentPane(new POptions(this));
+	    frame.getContentPane().setBackground(Color.ORANGE);
 	    frame.setVisible(true);
 	}
 	
@@ -59,6 +67,7 @@ public class Application {
 	{
 		frame.setSize(900, 700);
 		frame.setContentPane(new Plateau(j1, j2, this));
+	    frame.getContentPane().setBackground(Color.ORANGE);
 		frame.setVisible(true);
 	}
 	

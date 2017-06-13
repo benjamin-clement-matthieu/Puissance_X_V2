@@ -64,7 +64,7 @@ public class Plateau extends JPanel {
 		jGagnant = new JLabel();
 		jGagnant.setBounds(600, 350, 300, 50);
 
-		JButton bMenu = new JButton("Menu");
+		JCoolButton bMenu = new JCoolButton("Menu");
 		bMenu.setPreferredSize(new Dimension(80, 50));
 		bMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -75,7 +75,7 @@ public class Plateau extends JPanel {
 			}
 		});
 
-		JButton bRecommencer = new JButton("Commencer");
+		JCoolButton bRecommencer = new JCoolButton("Commencer");
 		bRecommencer.setPreferredSize(new Dimension(80, 50));
 		bRecommencer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {

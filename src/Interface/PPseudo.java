@@ -14,8 +14,8 @@ import Score.JoueurScore;
 
 public class PPseudo extends JPanel implements ActionListener {
 	private String nomChoisie = null;
-	private JButton bAnnuler = new JButton("Annuler");
-	private JButton bOk = new JButton("Ok");
+	private JCoolButton bAnnuler = new JCoolButton("Annuler");
+	private JCoolButton bOk = new JCoolButton("Ok");
 	private JComboBox box;
 	private final Application app;
 	
@@ -44,10 +44,10 @@ public class PPseudo extends JPanel implements ActionListener {
 		lNom.setBounds(235, 250, 250, 20);
 		this.add(lNom);
 		
-		bOk.setBounds(350, 335, 125, 30);
+		bOk.setBounds(350, 330, 125, 40);
 		this.add(bOk);
 			
-		bAnnuler.setBounds(225, 335, 125, 30);
+		bAnnuler.setBounds(225, 330, 125, 40);
 		this.add(bAnnuler);
 	}
 	
