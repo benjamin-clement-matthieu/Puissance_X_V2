@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import IA.IAAlphaBeta;
 import IA.IAMinMax;
 import Moteur.Case;
 import Moteur.Humain;
@@ -25,7 +26,7 @@ public class PMenu extends JPanel implements ActionListener{
 	private Font buttonFont = new Font("Serif", Font.PLAIN, 26);
 	private Font titreFont = new Font("ARIAL", Font.BOLD, 45);
 	private final Application app;
-	private int buttonWidth = 350;
+	private int buttonWidth = 400;
 	private int buttonHeight = 70;
 	
 	public PMenu(final Application application){
@@ -36,15 +37,15 @@ public class PMenu extends JPanel implements ActionListener{
 		lTitre.setFont(titreFont);
 		lTitre.setForeground(Color.RED);
 		
-		bIAvIA.setBounds(175, 150, buttonWidth, buttonHeight);
+		bIAvIA.setBounds(150, 150, buttonWidth, buttonHeight);
 		bIAvIA.setFont(buttonFont); 
-		bJvIA.setBounds(175, 220, buttonWidth, buttonHeight);
+		bJvIA.setBounds(150, 220, buttonWidth, buttonHeight);
 		bJvIA.setFont(buttonFont); 
-		bJvJ.setBounds(175, 290, buttonWidth, buttonHeight);
+		bJvJ.setBounds(150, 290, buttonWidth, buttonHeight);
 		bJvJ.setFont(buttonFont); 
-		bScores.setBounds(175, 360, buttonWidth, buttonHeight);
+		bScores.setBounds(150, 360, buttonWidth, buttonHeight);
 		bScores.setFont(buttonFont); 
-		bOptions.setBounds(175, 550, buttonWidth, buttonHeight);
+		bOptions.setBounds(150, 550, buttonWidth, buttonHeight);
 		bOptions.setFont(buttonFont);
 		
 		this.add(bIAvIA);
@@ -67,8 +68,8 @@ public class PMenu extends JPanel implements ActionListener{
 		// Bouton IA vs IA
 		if (e.getSource() == bIAvIA)
 		{
-			IAMinMax r1 = new IAMinMax(Case.ROUGE);
-	    	IAMinMax r2 = new IAMinMax(Case.JAUNE);
+			IAAlphaBeta r1 = new IAAlphaBeta(Case.ROUGE);
+			IAAlphaBeta r2 = new IAAlphaBeta(Case.JAUNE);
 			app.montrerPlateau(r1, r2);
 		}
 		// Bouton Joueur vs IA
@@ -81,7 +82,7 @@ public class PMenu extends JPanel implements ActionListener{
 					{
 						app.getGestionnaireScore().ajouterJoueur(nom);
 						Humain j = new Humain(nom, Case.ROUGE);
-					   	IAMinMax r1 = new IAMinMax(Case.JAUNE);
+					   	IAAlphaBeta r1 = new IAAlphaBeta(Case.JAUNE);
 						app.montrerPlateau(j, r1);
 					}
 				}

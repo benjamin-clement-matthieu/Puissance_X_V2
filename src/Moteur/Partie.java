@@ -33,7 +33,7 @@ public class Partie {
 	public void commencer()
 	{
 		partieFinie = false;
-		jCourrant = new Random().nextInt(2);
+		jCourrant = 0;
 		boolean partieGagne = false;
 		while(!disposed)
 		{			

@@ -61,11 +61,13 @@ public class Jeu {
 				// Si une case est vide, le coup peut être joué
 				if (grille[col][i] == Case.VIDE)
 				{
-					/*grille[col][i] = joueur.getCouleur();
+					grille[col][i] = joueur.getCouleur();
 					plateau.getPGrille().actualise(grille);
-					return true;*/
+					return true;
+					
+					/*
 					ligneChoisie = i;
-					break;
+					break;*/
 				}
 					
 			// ANIMATION
