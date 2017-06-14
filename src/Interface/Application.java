@@ -12,6 +12,7 @@ import Score.GestionnaireScore;
  */
 public class Application {
 	private final JFrame frame = new JFrame("Puissance X");
+
 	private GestionnaireScore gs;
 	public Application()
 	{	    
@@ -30,7 +31,7 @@ public class Application {
 	{
 	    frame.setContentPane(new PMenu(this));
 
-	    frame.getContentPane().setBackground(Color.ORANGE);
+	    frame.getContentPane().setBackground(new Color(49, 140, 231) );
 	    frame.setVisible(true);
 
 	}
@@ -40,7 +41,7 @@ public class Application {
 		PPseudo pseudo = new PPseudo(this, numJoueur);
 		frame.setSize(700, 700);
 	    frame.setContentPane(pseudo);
-	    frame.getContentPane().setBackground(Color.ORANGE);
+	    frame.getContentPane().setBackground(new Color(49, 140, 231));
 	    frame.setVisible(true);
 	    
 	    return pseudo.getSelectedNom();
@@ -49,21 +50,21 @@ public class Application {
 	public void montrerScores()
 	{
 	    frame.setContentPane(new PScores(this));
-	    frame.getContentPane().setBackground(Color.ORANGE);
+	    frame.getContentPane().setBackground(new Color(49, 140, 231));
 	    frame.setVisible(true);
 	}
 	
 	public void montrerOptions()
 	{
 	    frame.setContentPane(new POptions(this));
-	    frame.getContentPane().setBackground(Color.ORANGE);
+	    frame.getContentPane().setBackground(new Color(49, 140, 231));
 	    frame.setVisible(true);
 	}
 	
 	public void montrerPlateau(Joueur j1, Joueur j2)
 	{
 		frame.setContentPane(new Plateau(j1, j2, this));
-	    frame.getContentPane().setBackground(Color.ORANGE);
+	    frame.getContentPane().setBackground(new Color(49, 140, 231));
 		frame.setVisible(true);
 	}
 	

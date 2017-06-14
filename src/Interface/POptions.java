@@ -62,9 +62,9 @@ public class POptions extends JPanel implements ActionListener {
 		}
 		
 		check1.setSelected(Options.Valeurs.getSonActive());
-		lDifficulte.setForeground(Color.blue);
-		lPuissanceMode.setForeground(Color.blue);
-		lSon.setForeground(Color.blue);
+		lDifficulte.setForeground(new Color(43, 0, 154));
+		lPuissanceMode.setForeground(new Color(43, 0, 154));
+		lSon.setForeground(new Color(43, 0, 154));
 		back.addActionListener(this);
 		jr1.addActionListener(this);
 		jr2.addActionListener(this);
@@ -89,15 +89,15 @@ public class POptions extends JPanel implements ActionListener {
 		lDifficulte.setFont(f);
 		lPuissanceMode.setBounds(175, 200, 350, 100);
 		lPuissanceMode.setFont(f);
-		jr1.setBackground(Color.ORANGE);
-		jr2.setBackground(Color.ORANGE);
-		jr3.setBackground(Color.ORANGE);
-		jrP4.setBackground(Color.ORANGE);
-		jrP5.setBackground(Color.ORANGE);
-		jrP6.setBackground(Color.ORANGE);
+		jr1.setBackground(new Color(49, 140, 231));
+		jr2.setBackground(new Color(49, 140, 231));
+		jr3.setBackground(new Color(49, 140, 231));
+		jrP4.setBackground(new Color(49, 140, 231));
+		jrP5.setBackground(new Color(49, 140, 231));
+		jrP6.setBackground(new Color(49, 140, 231));
 		lSon.setBounds(300, 425, 350, 100);
 		lSon.setFont(f);
-		check1.setBackground(Color.ORANGE);
+		check1.setBackground(new Color(49, 140, 231));
 		setLayout(null);
 		this.add(check1);
 		this.add(back);

@@ -1,5 +1,6 @@
 package Interface;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -61,11 +62,13 @@ public class Plateau extends JPanel {
 
 		// Label du joueur courrant
 		jCourrant = new JLabel("Joueur en cours :");
+		jCourrant.setForeground(new Color(43, 0, 154));
 		jCourrant.setBounds(110, 20, 150, 50);
 
 		// Label du gagnant
 		jGagnant = new JLabel();
 		jGagnant.setFont(font);
+		jGagnant.setForeground(new Color(43, 0, 154));
 		jGagnant.setHorizontalAlignment(SwingConstants.CENTER);
 		jGagnant.setBounds(0, 20, 700, 50);
 
@@ -102,6 +105,7 @@ public class Plateau extends JPanel {
 
 		// Pseudo joueur 1 (avec sa couleur)
 		lJoueur1.setBounds(120, 520, 200, 20);
+		lJoueur1.setForeground(new Color(43, 0, 154));
 		this.add(lJoueur1);
 
 		couleurJ1.setBounds(300, 505, 50, 50);
@@ -109,6 +113,7 @@ public class Plateau extends JPanel {
 
 		// Pseudo joueur 2 (avec sa couleur)
 		lJoueur2.setBounds(420, 520, 200, 20);
+		lJoueur2.setForeground(new Color(43, 0, 154));
 		this.add(lJoueur2);
 
 		couleurJ2.setBounds(350, 505, 50, 50);

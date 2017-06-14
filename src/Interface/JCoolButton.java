@@ -16,13 +16,13 @@ import javax.swing.JButton;
 public class JCoolButton extends JButton {
 
 	private int inset = 5;
-	private Color buttonColor = Color.blue;
+	private Color buttonColor = new Color(127, 143, 166) ;
 	private Color vGradientEndColor;
 	
 	public JCoolButton(String aNameString) {
 		super(aNameString);
 		setContentAreaFilled(false);
-		setForeground(Color.white);
+		setForeground(new Color(90, 94, 107));
 	}
 
 	protected void paintComponent(Graphics g) {
@@ -41,12 +41,12 @@ public class JCoolButton extends JButton {
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		// Create the gradient paint for the first layer of the button
-		Color vGradientStartColor = buttonColor.darker().darker();
+		Color vGradientStartColor = buttonColor;
 		if (getModel().isPressed())
-			vGradientEndColor = buttonColor.darker().darker().darker();
+			vGradientEndColor = buttonColor;
 		else if (getModel().isRollover())
 		{
-			vGradientEndColor = buttonColor.brighter().brighter().brighter().brighter();
+			vGradientEndColor = buttonColor;
 		}
 		else
 			vGradientEndColor = buttonColor.brighter();

@@ -35,7 +35,7 @@ public class PMenu extends JPanel implements ActionListener{
 		lTitre.setBounds(175, 20, 350, 100);
 		lTitre.setHorizontalTextPosition(SwingConstants.CENTER);
 		lTitre.setFont(titreFont);
-		lTitre.setForeground(Color.RED);
+		lTitre.setForeground(new Color(43, 0, 154));
 		
 		bIAvIA.setBounds(150, 150, buttonWidth, buttonHeight);
 		bIAvIA.setFont(buttonFont); 
