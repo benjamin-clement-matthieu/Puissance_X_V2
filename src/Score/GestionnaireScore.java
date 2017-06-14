@@ -52,7 +52,7 @@ public class GestionnaireScore {
 		for (int i = 0; i < listScores.size(); i++)
 		{
 			// Si le joueur existe déjà
-			if (listScores.get(i).getNom() == joueur)
+			if (listScores.get(i).getNom().equals(joueur))
 			{
 				return false;
 			}
@@ -123,7 +123,7 @@ public class GestionnaireScore {
 		int index = -1;
 		for (int i = 0; i < listScores.size(); i++)
 		{
-			if (listScores.get(i).getNom() == nom)
+			if (listScores.get(i).getNom().equals(nom))
 			{
 				index = i;
 				break;

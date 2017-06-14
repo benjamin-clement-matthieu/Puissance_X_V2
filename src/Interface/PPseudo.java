@@ -58,6 +58,7 @@ public class PPseudo extends JPanel implements ActionListener {
 			try 
 			{
 				this.getRootPane().setDefaultButton(bOk);
+				box.getEditor().selectAll();
 				this.wait();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
