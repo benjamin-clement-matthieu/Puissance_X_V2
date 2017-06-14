@@ -1,6 +1,7 @@
 package Interface;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
@@ -36,9 +37,9 @@ public class Application {
 
 	}
 	
-	public String montrerPseudo(int numJoueur)
+	public String montrerPseudo(int numJoueur, ArrayList<String> noms)
 	{
-		PPseudo pseudo = new PPseudo(this, numJoueur);
+		PPseudo pseudo = new PPseudo(this, numJoueur, noms);
 		frame.setSize(700, 700);
 	    frame.setContentPane(pseudo);
 	    frame.getContentPane().setBackground(new Color(49, 140, 231));

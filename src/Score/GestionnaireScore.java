@@ -65,11 +65,8 @@ public class GestionnaireScore {
 	
 	public boolean enleverJoueur(String nom)
 	{
-		int index = getIndex(nom);
-		
-		if (index != -1)
+		if (listScores.remove(nom))
 		{
-			listScores.remove(index);
 			enregistrerScore();
 			return true;
 		}

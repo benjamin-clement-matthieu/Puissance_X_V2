@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,6 +13,7 @@ import IA.IAAlphaBeta;
 import IA.IAMinMax;
 import Moteur.Case;
 import Moteur.Humain;
+import Score.JoueurScore;
 /**
  * Class Menu qui permet de g�rer le menu principale
  *
@@ -76,7 +78,11 @@ public class PMenu extends JPanel implements ActionListener{
 		else if (e.getSource() == bJvIA){
 			Thread thread = new Thread(){
 				public void run(){
-					String nom = app.montrerPseudo(1);
+					ArrayList<String> noms = new ArrayList<String>();
+					for ( JoueurScore score : app.getGestionnaireScore().getListScores() ) {
+					    noms.add(score.getNom());
+					}
+					String nom = app.montrerPseudo(1, noms);
 					
 					if (nom != null)
 					{
@@ -93,16 +99,21 @@ public class PMenu extends JPanel implements ActionListener{
 		else if (e.getSource() == bJvJ){
 			Thread thread = new Thread(){
 				public void run(){
-					String nomJ1 = app.montrerPseudo(1);
+					ArrayList<String> noms = new ArrayList<String>();
+					for ( JoueurScore score : app.getGestionnaireScore().getListScores() ) {
+					    noms.add(score.getNom());
+					}
+					String nomJ1 = app.montrerPseudo(1, noms);
 					
 					if (nomJ1 != null)
 					{
+						noms.remove(nomJ1);
 						app.getGestionnaireScore().ajouterJoueur(nomJ1);
 						String nomJ2;
 						
 						// On ne veut pas que les 2 joueurs aient les mêmes pseudo
 						do{
-							nomJ2 = app.montrerPseudo(2);
+							nomJ2 = app.montrerPseudo(2, noms);
 						}
 						while (nomJ2 == nomJ1);
 							

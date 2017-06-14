@@ -20,13 +20,9 @@ public class PPseudo extends JPanel implements ActionListener {
 	private final Application app;
 	
 	
-	public PPseudo(final Application app, int numJoueur)
+	public PPseudo(final Application app, int numJoueur, ArrayList<String> noms)
 	{
 		this.app = app;
-		ArrayList<String> noms = new ArrayList<String>();
-		for ( JoueurScore score : app.getGestionnaireScore().getListScores() ) {
-		    noms.add(score.getNom());
-		}
 		
 		JLabel lNom = new JLabel("Sélectionner le nom du joueur " + numJoueur + " :");
 		
