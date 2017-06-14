@@ -74,7 +74,7 @@ public class POptions extends JPanel implements ActionListener {
 		jrP6.addActionListener(this);
 		check1.addActionListener(this);
 		
-		back.setBounds(0, 570, 100, 100);
+		back.setBounds(20, 580, 660, 75);
 		back.setFont(f);
 
 
@@ -84,7 +84,7 @@ public class POptions extends JPanel implements ActionListener {
 		jrP4.setBounds(100, 300, 200, 100);
 		jrP5.setBounds(300, 300, 200, 100);
 		jrP6.setBounds(500, 300, 200, 100);
-		check1.setBounds(300, 500, 100, 100);
+		check1.setBounds(300, 475, 100, 100);
 		lDifficulte.setBounds(250, 25, 200, 100);
 		lDifficulte.setFont(f);
 		lPuissanceMode.setBounds(175, 200, 350, 100);
@@ -95,7 +95,7 @@ public class POptions extends JPanel implements ActionListener {
 		jrP4.setBackground(new Color(49, 140, 231));
 		jrP5.setBackground(new Color(49, 140, 231));
 		jrP6.setBackground(new Color(49, 140, 231));
-		lSon.setBounds(300, 425, 350, 100);
+		lSon.setBounds(300, 400, 350, 100);
 		lSon.setFont(f);
 		check1.setBackground(new Color(49, 140, 231));
 		setLayout(null);

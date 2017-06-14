@@ -115,7 +115,7 @@ public class PMenu extends JPanel implements ActionListener{
 						do{
 							nomJ2 = app.montrerPseudo(2, noms);
 						}
-						while (nomJ2 == nomJ1);
+						while (nomJ2.equals(nomJ1));
 							
 						if (nomJ2 != null)
 						{
