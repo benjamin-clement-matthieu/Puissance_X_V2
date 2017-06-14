@@ -31,7 +31,7 @@ public class PGrille extends JPanel {
 	public void paintComponent(Graphics g) {
 		
 		try {
-			Image img = ImageIO.read(new File("bleu1.jpg"));
+			Image img = ImageIO.read(new File(this.getClass().getClassLoader().getResource("bleu1.jpg").getPath()));
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 			
 		} catch (IOException e) {
