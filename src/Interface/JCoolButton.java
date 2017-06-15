@@ -12,7 +12,11 @@ import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JButton;
-
+/**
+ * 
+ * @author mlaniess
+ *Class qui extend JButton permettant de faire de jolie boutons.
+ */
 public class JCoolButton extends JButton {
 
 	private int inset = 5;

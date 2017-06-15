@@ -17,7 +17,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Score.JoueurScore;
-
+/**
+ * 
+ * @author mlaniess
+ * Class gerant le tableau des scores via un fichier : score
+ */
 public class PScores extends JPanel{
 
 	final String TITRE = "PUISSANCE X";

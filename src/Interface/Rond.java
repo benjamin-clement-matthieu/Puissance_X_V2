@@ -6,7 +6,11 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import Moteur.Case;
-
+/**
+ * 
+ * @author mlaniess
+ *Class qui crée les cases du puissance X
+ */
 public class Rond extends JPanel {
 	private Color currentColor = Color.WHITE;
 	private int dimension;

@@ -2,12 +2,16 @@ package Interface;
 
 import java.io.IOException;
 import java.net.URL;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+/**
+ * 
+ * @author mlaniess
+ *Permet de jouer un son a chaque coup joué et apres la victoire d'un joueur humain
+ */
 public enum SoundEffect {
    SON_PIECE("0340.wav"),
    VICTOIRE("111.wav");

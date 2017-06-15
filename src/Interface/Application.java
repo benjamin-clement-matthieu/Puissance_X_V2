@@ -31,7 +31,6 @@ public class Application {
 	public void montrerMenu()
 	{
 	    frame.setContentPane(new PMenu(this));
-
 	    frame.getContentPane().setBackground(new Color(49, 140, 231) );
 	    frame.setVisible(true);
 

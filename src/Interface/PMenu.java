@@ -15,8 +15,9 @@ import Moteur.Case;
 import Moteur.Humain;
 import Score.JoueurScore;
 /**
- * Class Menu qui permet de g�rer le menu principale
- *
+ * 
+ * @author mlaniess
+ *Class Menu qui permet de g�rer le menu principale
  */
 public class PMenu extends JPanel implements ActionListener{
 	private JCoolButton bIAvIA = new JCoolButton("IA vs IA");

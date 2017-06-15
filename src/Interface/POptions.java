@@ -13,7 +13,11 @@ import javax.swing.JRadioButton;
 
 import IA.IADifficulte;
 import Moteur.PuissanceMode;
-
+/**
+ * 
+ * @author mlaniess
+ *Class qui gere le Panel "Options" 
+ */
 public class POptions extends JPanel implements ActionListener {
 	
 	private JCoolButton back = new JCoolButton("<");
